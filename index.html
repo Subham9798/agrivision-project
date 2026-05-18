@@ -27,13 +27,10 @@
                     <i class="fa-solid fa-chart-pie text-sm"></i> Central Dashboard
                 </a>
                 <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900/50 hover:text-slate-200 rounded-xl font-medium transition group">
-                    <i class="fa-solid fa-expand text-sm group-hover:text-emerald-400 transition"></i> AI Diagnosis Node
+                    <i class="fa-solid fa-cloud-sun text-sm group-hover:text-emerald-400 transition"></i> Climate Intel
                 </a>
                 <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900/50 hover:text-slate-200 rounded-xl font-medium transition group">
                     <i class="fa-solid fa-database text-sm group-hover:text-purple-400 transition"></i> Live MongoDB Logs
-                </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900/50 hover:text-slate-200 rounded-xl font-medium transition group">
-                    <i class="fa-solid fa-file-shield text-sm group-hover:text-blue-400 transition"></i> Compliance Reports
                 </a>
             </nav>
         </div>
@@ -48,7 +45,7 @@
         
         <header class="h-16 border-b border-slate-900 flex items-center justify-between px-8 bg-[#070a12]/40 backdrop-blur shrink-0">
             <div class="flex items-center gap-2">
-                <span class="text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 px-2.5 py-1 rounded-md">V2.4 Live</span>
+                <span class="text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 px-2.5 py-1 rounded-md">V2.5 Climate Edition</span>
             </div>
             <div class="flex items-center gap-4">
                 <div class="flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
@@ -60,6 +57,37 @@
         </header>
 
         <div class="p-6 lg:p-8 space-y-8 max-w-7xl w-full mx-auto flex-1">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 bg-gradient-to-r from-[#09151e] to-[#070a12] border border-blue-500/10 p-6 rounded-2xl shadow-2xl">
+                <div class="flex items-center gap-4 col-span-1 border-b lg:border-b-0 lg:border-r border-slate-900 pb-4 lg:pb-0">
+                    <div class="bg-blue-500/10 text-blue-400 p-4 rounded-xl text-3xl" id="weather-icon">
+                        <i class="fa-solid fa-cloud-sun animate-bounce"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Live Crop Environment</p>
+                        <h3 class="text-2xl font-black text-slate-100 mt-0.5" id="weather-temp">31°C</h3>
+                        <p class="text-xs text-slate-400 mt-0.5" id="weather-desc">Scattered Clouds • Delhi Node</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 col-span-1 border-b lg:border-b-0 lg:border-r border-slate-900 pb-4 lg:pb-0">
+                    <div class="bg-teal-500/10 text-teal-400 p-4 rounded-xl text-2xl">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Air Moisture / Humidity</p>
+                        <h3 class="text-xl font-bold text-slate-200 mt-0.5" id="weather-humidity">82%</h3>
+                        <p class="text-[11px] text-slate-500 mt-0.5">High moisture dynamic</p>
+                    </div>
+                </div>
+                <div class="col-span-1 flex flex-col justify-center">
+                    <div class="bg-red-500/5 border border-red-500/10 px-4 py-2.5 rounded-xl flex items-center gap-3" id="alert-box">
+                        <div class="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
+                        <p class="text-xs text-red-300 font-medium leading-relaxed">
+                            <strong class="text-red-400">Bio-Risk Alert:</strong> High humidity detected. Spore growth environment active for Early Blight.
+                        </p>
+                    </div>
+                </div>
+            </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div class="bg-[#070a12]/60 p-5 rounded-2xl border border-slate-900 flex items-center justify-between shadow-xl">
@@ -211,6 +239,47 @@
         const filenameText = document.getElementById('filename-text');
         const resultBox = document.getElementById('resultBox');
         const historyTableBody = document.getElementById('historyTableBody');
+
+        // NEW: Live Open-Meteo Weather API Data Fetch Function
+        async function fetchLiveWeather() {
+            try {
+                // Fetching data for Delhi coordinates (28.6139, 77.2090)
+                const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090&current=temperature_2m,relative_humidity_2m,weather_code");
+                if(!res.ok) throw new Error();
+                const data = await res.json();
+                
+                const temp = Math.round(data.current.temperature_2m);
+                const humidity = data.current.relative_humidity_2m;
+                
+                // Hydrate weather widgets
+                document.getElementById('weather-temp').innerText = `${temp}°C`;
+                document.getElementById('weather-humidity').innerText = `${humidity}%`;
+                
+                const alertBox = document.getElementById('alert-box');
+                if (humidity > 75) {
+                    alertBox.innerHTML = `
+                        <div class="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
+                        <p class="text-xs text-red-300 font-medium leading-relaxed">
+                            <strong class="text-red-400">Bio-Risk High:</strong> Humidity (${humidity}%) favors fungal breakout. Keep crops monitored.
+                        </p>
+                    `;
+                    alertBox.className = "bg-red-500/5 border border-red-500/10 px-4 py-2.5 rounded-xl flex items-center gap-3";
+                } else {
+                    alertBox.innerHTML = `
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <p class="text-xs text-emerald-300 font-medium leading-relaxed">
+                            <strong class="text-emerald-400">Environment Stable:</strong> Optimal humidity (${humidity}%). Low immediate risk of spore spreading.
+                        </p>
+                    `;
+                    alertBox.className = "bg-emerald-500/5 border border-emerald-500/10 px-4 py-2.5 rounded-xl flex items-center gap-3";
+                }
+            } catch (err) {
+                console.log("Weather API Offline, running simulations.");
+            }
+        }
+        
+        // Load weather immediately
+        fetchLiveWeather();
 
         // ChartJS Architecture Logic
         const ctx = document.getElementById('diseaseChart').getContext('2d');
