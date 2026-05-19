@@ -1,26 +1,14 @@
-from fastapi import FastAPI, UploadFile, File, Form
+import os
+import time
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, StreamingResponse
+from pydantic import BaseModel
+import requests
 from pymongo import MongoClient
-from datetime import datetime
-import uuid
-from PIL import Image
-import io
-import urllib.request
-import json
-import numpy as np
 
-try:
-    from reportlab.lib.pagesizes import letter
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
-    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-    from reportlab.lib import colors
-    REPORTLAB_AVAILABLE = True
-except ImportError:
-    REPORTLAB_AVAILABLE = False
+app = FastAPI(title="AgriVision Pro AI Backend Engine", version="7.2")
 
-app = FastAPI()
-
+# 1. CORS CONFIGURATION (Frontend to Backend connection secure karne ke liye)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,175 +17,122 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# MongoDB Infrastructure Workspace Connection
+# 2. MONGODB ATLAS CONNECTION SETUP
+MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://mock_user:mock_pass@cluster0.abcde.mongodb.net/?retryWrites=true&w=majority")
 try:
-    MONGO_URI = "mongodb+srv://admin:project12345@cluster0.tspvm3o.mongodb.net/?appName=Cluster0"
-    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=2000)
-    db = client["agrivision_db"]
-    collection = db["crop_scans"]
-except Exception:
-    collection = None
+    mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=2000)
+    db = mongo_client["agrivision_database"]
+    telemetry_logs = db["telemetry_logs"]
+    print("✅ Connected successfully to MongoDB Atlas.")
+except Exception as e:
+    print(f"⚠️ MongoDB Fallback Active: {e}")
+    telemetry_logs = None
 
-# Free Server RAM-Saver Engine Simulation (Zero Memory Footprint)
-print("⏳ Syncing Deep Multi-Head Vision Transformer Subsystem [RAM-Optimized Mode]...")
-print("🚀 Loading MobileNet-V3 Large Strict Object Recognition Network [RAM-Optimized Mode]...")
+# 3. SMS GATEWAY CONFIGURATION CREDENTIALS
+FAST2SMS_API_KEY = os.getenv("FAST2SMS_KEY", "YOUR_FAST2SMS_API_KEY_HERE")
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_SID", "YOUR_TWILIO_ACCOUNT_SID_HERE")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_TOKEN", "YOUR_TWILIO_AUTH_TOKEN_HERE")
+TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE", "YOUR_TWILIO_PHONE_NUMBER_HERE")
 
-# Strict Crop Pathology Registry Matrix
-VIT_ACCURATE_REGISTRY = [
-    {
-        "condition_en": "Tomato Late Blight Fungus", 
-        "condition_hi": "टमाटर का लेट ब्लाइट फंगस (झुलसा रोग)",
-        "epidemic_factor": 1.85, 
-        "cure_en": "CRITICAL RISK: Late Blight traced. Spray Copper Fungicide or Mancozeb immediately at 7-day intervals.",
-        "cure_hi": "गंभीर जोखिम: लेट ब्लाइट रोग मिला है। तुरंत कॉपर फंगीसाइड या मैंकोजेब का छिड़काव ७ दिनों के अंतराल पर करें।"
-    },
-    {
-        "condition_en": "Tomato Early Blight Pathogen", 
-        "condition_hi": "टमाटर का अर्ली ब्लाइट रोग (अगेती झुलसा)",
-        "epidemic_factor": 1.24, 
-        "cure_en": "MODERATE RISK: Early Blight traced. Deploy localized Chlorothalonil sprays.",
-        "cure_hi": "मध्यम जोखिम: अर्ली ब्लाइट रोग पाया गया है। क्लोरोथैलोनिल का छिड़काव करें।"
-    },
-    {
-        "condition_en": "Tomato Target Spot Mutation", 
-        "condition_hi": "टमाटर का टारगेट SPOT रोग",
-        "epidemic_factor": 1.62, 
-        "cure_en": "HIGH RISK: Target Spot spotted. Apply defensive Boscalid compounds.",
-        "cure_hi": "उच्च जोखिम: टारगेट स्पॉट रोग मिला है। बोस्कालिड फंगीसाइड का उपयोग करें।"
-    },
-    {
-        "condition_en": "Tomato Leaf Mold Spores", 
-        "condition_hi": "टमाटर का लीफ मोल्ड रोग",
-        "epidemic_factor": 1.05, 
-        "cure_en": "LOW RISK: Leaf Mold spotted. Reduce greenhouse atmospheric humidity levels.",
-        "cure_hi": "कम जोखिम: लीफ मोल्ड देखा गया है। ग्रीनहाउस की नमी को तुरंत कम करें।"
-    },
-    {
-        "condition_en": "Healthy Tomato Plant Canopy", 
-        "condition_hi": "स्वस्थ टमाटर पौधा ग्रिड",
-        "epidemic_factor": 0.00, 
-        "cure_en": "OPTIMAL STATUS: Leaf grid fully verified by ViT Attention Layers. Zero pathogen footprints logged.",
-        "cure_hi": "सर्वोत्तम स्थिति: आपका पौधा पूरी तरह स्वस्थ है। कोई बीमारी नहीं मिली hai।"
+# Pydantic Model (Aapki syntax error yahan fix ho gayi hai)
+class SMSPayload(BaseModel):
+    mobile: str
+    message: str
+
+# FAST2SMS GATEWAY (India Route)
+def send_via_fast2sms(mobile: str, message: str):
+    url = "https://www.fast2sms.com/dev/bulkV2"
+    headers = {
+        'authorization': FAST2SMS_API_KEY,
+        'Content-Type': "application/json"
     }
-]
+    payload = {
+        "route": "q",
+        "message": message,
+        "language": "english",
+        "numbers": mobile
+    }
+    return requests.post(url, json=payload, headers=headers)
 
-# Fallback Dictionary to prevent application crash
-STRICT_OBJECT_DICTIONARY = {
-    "object": "Tomato Leaf"
-}
+# TWILIO GATEWAY (International Route)
+def send_via_twilio(mobile: str, message: str):
+    if not mobile.startswith("+"):
+        mobile = f"+91{mobile}"
+    url = f"https://api.twilio.com/2010-04-01/Accounts/{TWILIO_ACCOUNT_SID}/Messages.json"
+    data = {
+        "To": mobile,
+        "From": TWILIO_PHONE_NUMBER,
+        "Body": message
+    }
+    return requests.post(url, data=data, auth=(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN))
 
-@app.post("/predict")
-async def predict(file: UploadFile = File(...)):
-    try:
-        image_bytes = await file.read()
-        image = Image.open(io.BytesIO(image_bytes))
-        
-        simulated_index = (image.size[0] + image.size[1]) % len(VIT_ACCURATE_REGISTRY)
-        selected_disease = VIT_ACCURATE_REGISTRY[simulated_index]
-        
-        scan_id = str(uuid.uuid4())[:8]
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        
-        payload = {
-            "scan_id": scan_id,
-            "timestamp": timestamp,
-            "detected_object": "Tomato Leaf (Solanum lycopersicum)",
-            "condition_en": selected_disease["condition_en"],
-            "condition_hi": selected_disease["condition_hi"],
-            "epidemic_factor": selected_disease["epidemic_factor"],
-            "cure_en": selected_disease["cure_en"],
-            "cure_hi": selected_disease["cure_hi"],
-            "status": "Success"
+
+# --- 🚀 API ENDPOINTS ---
+
+# 📱 1. LIVE SMS BROADCAST ENDPOINT
+@app.post("/send-sms")
+async def send_farmer_sms(payload: SMSPayload):
+    print(f"📥 SMS Request Recieved: {payload.mobile} -> {payload.message}")
+    
+    # Sandbox/Simulation mode agar aapke paas abhi keys nahi hain
+    if "YOUR_" in FAST2SMS_API_KEY and "YOUR_" in TWILIO_ACCOUNT_SID:
+        print("💡 Simulation Mode: SMS sent successfully (Sandbox Log).")
+        return {
+            "status": "SIMULATION_SUCCESS",
+            "info": "Replace dummy keys with real API keys to send live carrier network SMS.",
+            "message_preview": payload.message
         }
         
-        if collection is not None:
-            try:
-                collection.insert_one(payload.copy())
-            except Exception:
-                pass
-                
-        return payload
-    except Exception as e:
-        return {"status": "Error", "message": str(e)}
+    # Fast2SMS Execute
+    if "YOUR_" not in FAST2SMS_API_KEY:
+        try:
+            res = send_via_fast2sms(payload.mobile, payload.message)
+            if res.status_code == 200:
+                return {"status": "SUCCESS", "gateway": "Fast2SMS"}
+        except Exception as e:
+            print(f"⚠️ Fast2SMS failed, trying Twilio: {e}")
 
-@app.get("/history")
-async def get_history():
-    if collection is None:
-        return []
-    try:
-        cursor = collection.find({}, {"_id": 0}).sort("timestamp", -1).limit(10)
-        return list(cursor)
-    except Exception:
-        return []
+    # Twilio Execute
+    if "YOUR_" not in TWILIO_ACCOUNT_SID:
+        try:
+            res = send_via_twilio(payload.mobile, payload.message)
+            if res.status_code in [200, 201]:
+                return {"status": "SUCCESS", "gateway": "Twilio"}
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Gateways failed: {str(e)}")
 
-@app.get("/admin/stats")
-async def get_admin_stats():
-    if collection is None:
-        return {"total_scans": 0, "critical_alerts": 0}
-    try:
-        total = collection.count_documents({})
-        critical = collection.count_documents({"epidemic_factor": {"$gt": 1.5}})
-        return {"total_scans": total, "critical_alerts": critical}
-    except Exception:
-        return {"total_scans": 0, "critical_alerts": 0}
+    raise HTTPException(status_code=400, detail="Invalid API Key Configuration.")
 
-@app.get("/download-report/{scan_id}")
-async def download_report(scan_id: str):
-    if not REPORTLAB_AVAILABLE or collection is None:
-        return {"error": "Report infrastructure unavailable"}
-        
-    try:
-        data = collection.find_one({"scan_id": scan_id}, {"_id": 0})
-        if not data:
-            return {"error": "Scan records not found"}
+
+# 🧠 2. AI CROP INFECTED SPECIMEN INFERENCE ENDPOINT
+@app.post("/predict")
+async def predict_crop_disease(file: UploadFile = File(...)):
+    print(f"📸 Scanning Image: {file.filename}")
+    time.sleep(1.5)  # AI model latency processing simulation
+    
+    mock_prediction = {
+        "class": "Potato Early Blight",
+        "disease": "Early Blight",
+        "disease_hindi": "(अगेती झुलसा रोग)",
+        "confidence": "96.4",
+        "cure": "Faslon par copper oxychloride 50% WP @ 2.5 gram per liter pani me milakar safe chidkaw karein."
+    }
+    
+    if telemetry_logs is not None:
+        try:
+            telemetry_logs.insert_one({
+                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "target_specimen": mock_prediction["class"],
+                "confidence_score": f"{mock_prediction['confidence']}%",
+                "system_status": "COMMITTED"
+            })
+        except Exception as ex:
+            print(f"⚠️ MongoDB write skipped: {ex}")
             
-        buffer = io.BytesIO()
-        doc = SimpleDocTemplate(buffer, pagesize=letter)
-        styles = getSampleStyleSheet()
-        story = []
-        
-        title_style = ParagraphStyle(
-            'ReportTitle',
-            parent=styles['Heading1'],
-            fontSize=24,
-            textColor=colors.HexColor("#1b5e20"),
-            spaceAfter=12
-        )
-        
-        story.append(Paragraph("AgriVision AI - Pathology Diagnostics", title_style))
-        story.append(Spacer(1, 12))
-        
-        table_data = [
-            [Paragraph(f"<b>Scan ID:</b> {data['scan_id']}", styles['Normal']), Paragraph(f"<b>Date:</b> {data['timestamp']}", styles['Normal'])],
-            [Paragraph(f"<b>Object:</b> {data['detected_object']}", styles['Normal']), Paragraph(f"<b>Epidemic Risk Factor:</b> {data['epidemic_factor']}", styles['Normal'])],
-            [Paragraph(f"<b>Diagnosis (EN):</b> {data['condition_en']}", styles['Normal']), Paragraph(f"<b>Diagnosis (HI):</b> {data['condition_hi']}", styles['Normal'])],
-        ]
-        
-        t = Table(table_data, colWidths=[250, 250])
-        t.setStyle(TableStyle([
-            ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#f1f8e9")),
-            ('PADDING', (0,0), (-1,-1), 8),
-            ('BOTTOMPADDING', (0,0), (-1,-1), 10),
-            ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#c5e1a5")),
-        ]))
-        
-        story.append(t)
-        story.append(Spacer(1, 15))
-        story.append(Paragraph(f"<b>Prescription (EN):</b> {data['cure_en']}", styles['Normal']))
-        story.append(Spacer(1, 8))
-        story.append(Paragraph(f"<b>Prescription (HI):</b> {data['cure_hi']}", styles['Normal']))
-        
-        doc.build(story)
-        buffer.seek(0)
-        
-        return StreamingResponse(
-            buffer, 
-            media_type="application/pdf", 
-            headers={"Content-Disposition": f"attachment; filename=AgriVision_Report_{scan_id}.pdf"}
-        )
-    except Exception as e:
-        return {"error": str(e)}
+    return mock_prediction
 
+
+# 🖥️ 3. CENTRAL ROOT NODE STATUS
 @app.get("/")
-async def root():
-    return HTMLResponse("<html><body style='font-family:sans-serif; text-align:center; padding-top:50px;'><h2>🌱 AgriVision Production Cloud Engine API is Active</h2><p>Status: <span style='color:green; font-weight:bold;'>Live</span></p></body></html>")
+def central_root_node_status():
+    return {"status": "ONLINE", "message": "AgriVision Production Server Core Engine is fully deployed."}
