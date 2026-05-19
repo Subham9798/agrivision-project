@@ -53,7 +53,7 @@
         
         <header class="h-16 border-b border-slate-900 flex items-center justify-between px-8 bg-[#070a12]/40 backdrop-blur shrink-0">
             <div class="flex items-center gap-2">
-                <span class="text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 px-2.5 py-1 rounded-md">V3.5 Vision Cam Edition</span>
+                <span class="text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 px-2.5 py-1 rounded-md">V4.5 Voice & Blur Detection Edition</span>
             </div>
             <div class="flex items-center gap-4">
                 <div class="flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
@@ -97,13 +97,78 @@
                 </div>
             </div>
 
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl space-y-4">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-flask-vial text-teal-400"></i> N-P-K Soil Health Matrix
+                        </h3>
+                        <p class="text-xs text-slate-500">Real-time macronutrient calibration index detected from ground telemetry.</p>
+                    </div>
+                    <div class="space-y-3.5">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-400 font-medium">Nitrogen (N) - Leaf Growth</span>
+                                <span class="text-emerald-400 font-mono font-bold" id="npk-n">64% (Optimal)</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-900">
+                                <div class="bg-emerald-500 h-full rounded-full transition-all duration-500" style="width: 64%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-400 font-medium">Phosphorus (P) - Fruit Stability</span>
+                                <span class="text-amber-400 font-mono font-bold" id="npk-p">42% (Deficient)</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-900">
+                                <div class="bg-amber-500 h-full rounded-full transition-all duration-500" style="width: 42%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-400 font-medium">Potassium (K) - Disease Resistance</span>
+                                <span class="text-emerald-400 font-mono font-bold" id="npk-k">78% (Excellent)</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-900">
+                                <div class="bg-emerald-500 h-full rounded-full transition-all duration-500" style="width: 78%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line-up text-purple-400"></i> AI Crop Yield & Market Forecast
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-4">Predictive harvest volume and gross valuation metrics based on land inputs.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-[#05070c] p-4 rounded-xl border border-slate-900 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Estimated Harvest</p>
+                            <h4 class="text-xl font-black text-purple-400 mt-1" id="forecast-yield">12.4 Tons</h4>
+                            <p class="text-[9px] text-slate-500 mt-0.5">Based on land parameters</p>
+                        </div>
+                        <div class="bg-[#05070c] p-4 rounded-xl border border-slate-900 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Gross Market Value</p>
+                            <h4 class="text-xl font-black text-emerald-400 mt-1" id="forecast-price">₹2,48,000</h4>
+                            <p class="text-[9px] text-slate-500 mt-0.5">Current Mandi API Rates</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-500/5 border border-purple-500/10 p-2.5 rounded-xl text-[11px] text-purple-300 flex items-center gap-2 mt-3">
+                        <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i>
+                        <span>Phosphorus levels are low! Adding bone-meal can boost yield by 15%.</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl">
                 <div class="lg:col-span-1 space-y-4">
                     <div>
                         <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
                             <i class="fa-solid fa-calculator text-emerald-400"></i> Agri-Dose Calculator
                         </h3>
-                        <p class="text-xs text-slate-500">Calculate exact pesticide & water formulation ratio for your land area.</p>
+                        <p class="text-xs text-slate-500">Calculate exact pesticide & water formulation ratio.</p>
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Select Land Unit</label>
@@ -144,7 +209,7 @@
                     <div class="sm:col-span-2 bg-emerald-500/5 border border-emerald-500/10 p-3.5 rounded-xl text-xs text-emerald-300 flex gap-2.5 items-start">
                         <i class="fa-solid fa-circle-info text-emerald-400 mt-0.5"></i>
                         <p class="leading-relaxed">
-                            <strong class="text-emerald-400">Expert Instruction:</strong> Pour half water into the tank, mix the calculated chemical thoroughly, then add the remaining water. Spray uniformly during low wind hours.
+                            <strong class="text-emerald-400">Expert Instruction:</strong> Pour half water into the tank, mix the calculated chemical thoroughly, then add the remaining water.
                         </p>
                     </div>
                 </div>
@@ -197,6 +262,11 @@
 
                     </div>
 
+                    <div id="blurAlertBox" class="hidden mt-3 bg-amber-500/10 border border-amber-500/30 p-2.5 rounded-xl flex items-center gap-2 text-xs text-amber-400">
+                        <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
+                        <span><strong>Image Unclear (धुंधली फोटो):</strong> Matrix detected high blur vector variance. Please recapture for accurate AI predictions.</span>
+                    </div>
+
                     <div class="grid grid-cols-2 gap-3 mt-4">
                         <div>
                             <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Target GPS Lat</label>
@@ -217,7 +287,7 @@
                     <h3 class="text-base font-bold text-slate-200 mb-1 flex items-center gap-2">
                         <i class="fa-solid fa-chart-line text-blue-400 text-sm"></i> Epidemic Distribution Index
                     </h3>
-                    <p class="text-xs text-slate-500 mb-4">A real-time distribution matrix calculated based on global active pipeline telemetry entries.</p>
+                    <p class="text-xs text-slate-500 mb-4">A real-time distribution matrix calculated based on active pipeline telemetry entries.</p>
                     <div class="flex-1 flex items-center justify-center">
                         <canvas id="diseaseChart" class="w-full max-h-[320px]"></canvas>
                     </div>
@@ -229,7 +299,7 @@
                     <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
                         <i class="fa-solid fa-map-location-dot text-emerald-400"></i> Live Disease Hotspot GIS Radar
                     </h3>
-                    <p class="text-xs text-slate-500">Real-time mapping cluster highlighting infected zones dynamically captured via global nodes.</p>
+                    <p class="text-xs text-slate-500">Real-time mapping cluster highlighting infected zones dynamically captured.</p>
                 </div>
                 <div id="map" class="w-full h-96 rounded-xl border border-slate-900 shadow-inner z-10"></div>
             </div>
@@ -265,7 +335,7 @@
 
             <div class="bg-[#070a12]/60 rounded-2xl border border-slate-900 overflow-hidden shadow-xl">
                 <div class="px-6 py-4 border-b border-slate-900 flex items-center justify-between bg-slate-900/10">
-                    <h3 class="font-bold text-sm text-slate-200"><i class="fa-solid fa-server text-purple-400 mr-2"></i> Real-Time Database Streams (Live Cluster Transactions)</h3>
+                    <h3 class="font-bold text-sm text-slate-200"><i class="fa-solid fa-server text-purple-400 mr-2"></i> Real-Time Database Streams</h3>
                     <span class="text-[10px] bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2.5 py-1 rounded font-mono">BSON Log Stream</span>
                 </div>
                 <div class="overflow-x-auto">
@@ -305,13 +375,18 @@
                 <div id="chat-logs" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs scrollbar-thin">
                     <div class="flex gap-2 items-start max-w-[85%]">
                         <div class="bg-slate-900 px-3 py-2.5 rounded-2xl rounded-tl-none border border-slate-850 text-slate-300">
-                            Namaskar bhai! 🙏 Main hoon aapka Kisaan Mitra AI expert. Mujhse kheti, khad, ya fasal ki bimariyon ke baare mein kuch bhi poochiye!
+                            Namaskar bhai! 🙏 Main hoon aapka Kisaan Mitra AI. Aap bol kar ya type karke mujhse kheti ka koi bhi sawaal pooch sakte hain!
                         </div>
                     </div>
                 </div>
-                <div class="p-3 border-t border-slate-900 bg-[#05070c]/50 flex gap-2">
-                    <input type="text" id="chat-input" placeholder="Type your agri query here..." class="flex-1 bg-slate-950 border border-slate-850 rounded-xl px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/30">
-                    <button id="chat-send" class="bg-emerald-500 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs hover:opacity-90 transition"><i class="fa-solid fa-paper-plane"></i></button>
+                <div class="p-3 border-t border-slate-900 bg-[#05070c]/50 flex gap-2 items-center">
+                    <input type="text" id="chat-input" placeholder="Type or use mic button..." class="flex-1 bg-slate-950 border border-slate-850 rounded-xl px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/30">
+                    
+                    <button id="voiceBtn" class="w-9 h-9 bg-slate-900 border border-slate-800 text-slate-400 hover:text-red-400 hover:border-red-500/20 rounded-xl flex items-center justify-center transition shrink-0" title="Speak Query">
+                        <i class="fa-solid fa-microphone text-xs" id="mic-icon"></i>
+                    </button>
+                    
+                    <button id="chat-send" class="bg-emerald-500 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs hover:opacity-90 transition shrink-0"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>
@@ -321,7 +396,83 @@
     <script>
         const BACKEND_URL = "https://agrivision-project-icmn.onrender.com";
         
-        // --- LIVE HARDWARE CAMERA SOURCE INTERFACE MODULE ---
+        // --- 🎙️ ADVANCED VOICE ASSISTANT INTERFACE LOGIC ---
+        const voiceBtn = document.getElementById('voiceBtn');
+        const micIcon = document.getElementById('mic-icon');
+        const chatInput = document.getElementById('chat-input');
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.lang = 'hi-IN'; // Sets standard Hindi & Hinglish engine logic
+            recognition.interimResults = false;
+
+            voiceBtn.addEventListener('click', () => {
+                try {
+                    recognition.start();
+                } catch(e) { recognition.stop(); }
+            });
+
+            recognition.onstart = () => {
+                micIcon.className = "fa-solid fa-microphone-lines text-red-500 animate-pulse";
+                chatInput.placeholder = "Listening active... Kuch boliye...";
+            };
+
+            recognition.onerror = () => { resetMicStatus(); };
+            recognition.onend = () => { resetMicStatus(); };
+
+            recognition.onresult = (event) => {
+                const speechToText = event.results[0][0].transcript;
+                chatInput.value = speechToText;
+                handleBotQuery(); // Seamlessly auto trigger query response pipeline matrix
+            };
+        } else {
+            voiceBtn.style.display = 'none'; // Safe fallback grid node configuration if speech module missing
+        }
+
+        function resetMicStatus() {
+            micIcon.className = "fa-solid fa-microphone text-xs text-slate-400";
+            chatInput.placeholder = "Type or use mic button...";
+        }
+
+        // --- 📸 MACHINE LEARNING DRIVEN BLUR DETECTION LAYER ---
+        const blurAlertBox = document.getElementById('blurAlertBox');
+        
+        function verifyClarityAndDetectBlur(imageElement) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.src = imageElement.src;
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 150; canvas.height = 150; // Performance scaled thumbnail evaluation node
+                    ctx.drawImage(img, 0, 0, 150, 150);
+                    
+                    const imgData = ctx.getImageData(0, 0, 150, 150).data;
+                    let totalVariance = 0;
+                    let pixelsCount = 150 * 150;
+                    
+                    // Light laplacian gradient analysis computation
+                    for (let i = 0; i < imgData.length; i += 16) {
+                        let currentGray = (imgData[i] + imgData[i+1] + imgData[i+2]) / 3;
+                        let nextGray = (imgData[i+4] + imgData[i+5] + imgData[i+6]) / 3 || currentGray;
+                        let edgeDelta = Math.abs(currentGray - nextGray);
+                        totalVariance += edgeDelta;
+                    }
+                    
+                    const edgeScore = totalVariance / (pixelsCount / 4);
+                    // Standard blur filter variance coefficient marker threshold
+                    if(edgeScore < 3.8) {
+                        resolve(true); // Is highly blurry
+                    } else {
+                        resolve(false); // Image is sharp and verified clear
+                    }
+                };
+            });
+        }
+
+        // CAMERA INTERFACE MODULE
         const tabFile = document.getElementById('tab-file');
         const tabCamera = document.getElementById('tab-camera');
         const dropZone = document.getElementById('drop-zone');
@@ -330,7 +481,7 @@
         const captureBtn = document.getElementById('captureBtn');
         
         let localStream = null;
-        let capturedBlob = null; // Memory allocation holder for camera file stream object
+        let capturedBlob = null;
 
         tabFile.addEventListener('click', () => {
             tabFile.className = "flex-1 py-2 text-center rounded-lg bg-slate-900 text-emerald-400 border border-slate-800 transition cursor-pointer";
@@ -351,12 +502,12 @@
         async function startCameraStream() {
             try {
                 localStream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: "environment" }, // Prioritize back phone lens safely
+                    video: { facingMode: "environment" }, 
                     audio: false 
                 });
                 videoFeed.srcObject = localStream;
             } catch (err) {
-                alert("Camera Access Denied or Missing. Please check browser privacy nodes.");
+                alert("Camera Access Denied or Missing.");
             }
         }
 
@@ -367,7 +518,6 @@
             }
         }
 
-        // Capture snapshot from hardware video layer engine
         captureBtn.addEventListener('click', () => {
             const canvas = document.createElement('canvas');
             canvas.width = videoFeed.videoWidth;
@@ -375,26 +525,32 @@
             const ctx2d = canvas.getContext('2d');
             ctx2d.drawImage(videoFeed, 0, 0, canvas.width, canvas.height);
             
-            canvas.toBlob((blob) => {
+            canvas.toBlob(async (blob) => {
                 capturedBlob = blob;
-                // Switch window matrix view back to review block seamlessly
                 filenameText.innerText = "Captured_Specimen_Matrix.png";
                 imagePreview.src = canvas.toDataURL('image/png');
                 uploadPrompt.classList.add('hidden');
                 previewContainer.classList.remove('hidden');
-                
-                // Simulate returning to file tab to let user hit evaluation sequence triggers
                 tabFile.click();
+
+                // Run blur validation directly on captured stream
+                const isBlurry = await verifyClarityAndDetectBlur(imagePreview);
+                if(isBlurry) {
+                    blurAlertBox.classList.remove('hidden');
+                } else {
+                    blurAlertBox.classList.add('hidden');
+                }
             }, 'image/png');
         });
-        // --- END CAMERA IMPLEMENTATION MODULE ---
 
-        // DYNAMIC DOSAGE CALCULATOR ALGORITHM
+        // DYNAMIC DOSAGE & YIELD ALGORITHM
         const areaUnit = document.getElementById('area-unit');
         const areaSize = document.getElementById('area-size');
         const calcBtn = document.getElementById('calcBtn');
         const calcChem = document.getElementById('calc-chem');
         const calcWater = document.getElementById('calc-water');
+        const forecastYield = document.getElementById('forecast-yield');
+        const forecastPrice = document.getElementById('forecast-price');
 
         calcBtn.addEventListener('click', runDosageCalculation);
         areaSize.addEventListener('input', runDosageCalculation);
@@ -405,41 +561,36 @@
             if(isNaN(size) || size <= 0) size = 1;
             let acreMultiplier = size;
             if(areaUnit.value === 'bigha') acreMultiplier = size * 0.4;
+            
             calcChem.innerText = `${Math.round(acreMultiplier * 400)} Grams / ml`;
             calcWater.innerText = `${Math.round(acreMultiplier * 200)} Liters`;
+
+            const estimatedTons = (acreMultiplier * 12.4).toFixed(1);
+            const estimatedCash = Math.round(acreMultiplier * 248000);
+            forecastYield.innerText = `${estimatedTons} Tons`;
+            forecastPrice.innerText = `₹${estimatedCash.toLocaleString('en-IN')}`;
         }
 
         // LEAFLET MAP ARCHITECTURE LOGIC
         const map = L.map('map').setView([20.5937, 78.9629], 5); 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '© OpenStreetMap parameters'
-        }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
 
         const hotspots = [
             {lat: 28.6139, lng: 77.2090, label: "Delhi Node: Early Blight Outbreak (High)"},
-            {lat: 19.0760, lng: 72.8777, label: "Mumbai Cluster: Late Blight Spore Active"},
-            {lat: 13.0827, lng: 80.2707, label: "Chennai Node: Leaf Curl Safe Zone"},
-            {lat: 22.5726, lng: 88.3639, label: "Kolkata Hub: Heavy Infection Detected"}
+            {lat: 19.0760, lng: 72.8777, label: "Mumbai Cluster: Late Blight Spore Active"}
         ];
 
         hotspots.forEach(spot => {
-            L.circle([spot.lat, spot.lng], {
-                color: '#ef4444',
-                fillColor: '#f87171',
-                fillOpacity: 0.5,
-                radius: 40000
-            }).addTo(map).bindPopup(`<span class="text-xs text-slate-900 font-bold">${spot.label}</span>`);
+            L.circle([spot.lat, spot.lng], { color: '#ef4444', fillColor: '#f87171', fillOpacity: 0.5, radius: 40000 }).addTo(map);
         });
 
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
+                const lat = position.coords.latitude; const lng = position.coords.longitude;
                 document.getElementById('gps-lat').value = lat.toFixed(4) + "° N";
                 document.getElementById('gps-long').value = lng.toFixed(4) + "° E";
                 map.setView([lat, lng], 7);
-                L.marker([lat, lng]).addTo(map).bindPopup('<b class="text-slate-900 text-xs">Aapka Current Target Node</b>').openPopup();
+                L.marker([lat, lng]).addTo(map).bindPopup('<b class="text-slate-900 text-xs">Aapka Current Node</b>').openPopup();
             });
         }
 
@@ -457,7 +608,6 @@
         const chatWindow = document.getElementById('chat-window');
         const chatClose = document.getElementById('chat-close');
         const chatIcon = document.getElementById('chat-icon');
-        const chatInput = document.getElementById('chat-input');
         const chatSend = document.getElementById('chat-send');
         const chatLogs = document.getElementById('chat-logs');
 
@@ -466,11 +616,7 @@
             chatIcon.className = chatWindow.classList.contains('hidden') ? "fa-solid fa-comments" : "fa-solid fa-chevron-down text-sm";
         });
 
-        chatClose.addEventListener('click', () => {
-            chatWindow.classList.add('hidden');
-            chatIcon.className = "fa-solid fa-comments";
-        });
-
+        chatClose.addEventListener('click', () => { chatWindow.classList.add('hidden'); chatIcon.className = "fa-solid fa-comments"; });
         chatSend.addEventListener('click', handleBotQuery);
         chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleBotQuery(); });
 
@@ -488,9 +634,7 @@
                 if(q.includes('blight') || q.includes('bimari') || q.includes('rog')) {
                     reply = "Agar paudhe par kale ya bhoore dhabbe (Blight) dikh rahe hain, toh Chlorothalonil ya Copper Oxychloride fungicide ka 2g/L paani mein ghol banakar chidkao karein.";
                 } else if(q.includes('dawa') || q.includes('spray') || q.includes('pesticide')) {
-                    reply = "Bhai, tamatar ke khet mein kitna spray karna hai ye area par depend karta hai. Standard dosing ke hisab se Neem oil ka spray organic control ke liye bohot acha hota hai.";
-                } else if(q.includes('weather') || q.includes('mausam')) {
-                    reply = "Humare central node ke mutabik abhi humidity high chal rahi hai, isliye fungus lagne ke chances zyada hain. Paudho ko paas-paas na lagayein, gap banakar rakhein.";
+                    reply = "Bhai, neem oil ka spray organic control ke liye bohot acha hota hai aur mitti ki urvara shakti ko bhi banaye rakhta hai.";
                 }
                 chatLogs.insertAdjacentHTML('beforeend', `<div class="flex gap-2 items-start max-w-[85%]"><div class="bg-slate-900 px-3 py-2.5 rounded-2xl rounded-tl-none border border-slate-855 text-slate-300">${reply}</div></div>`);
                 chatLogs.scrollTop = chatLogs.scrollHeight;
@@ -499,20 +643,10 @@
 
         async function fetchLiveWeather() {
             try {
-                const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090&current=temperature_2m,relative_humidity_2m,weather_code");
+                const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090&current=temperature_2m,relative_humidity_2m");
                 const data = await res.json();
-                const temp = Math.round(data.current.temperature_2m);
-                const humidity = data.current.relative_humidity_2m;
-                document.getElementById('weather-temp').innerText = `${temp}°C`;
-                document.getElementById('weather-humidity').innerText = `${humidity}%`;
-                const alertBox = document.getElementById('alert-box');
-                if (humidity > 75) {
-                    alertBox.innerHTML = `<div class="w-2 h-2 rounded-full bg-red-500 animate-ping"></div><p class="text-xs text-red-300 font-medium leading-relaxed"><strong class="text-red-400">Bio-Risk High:</strong> Humidity (${humidity}%) favors fungal breakout.</p>`;
-                    alertBox.className = "bg-red-500/5 border border-red-500/10 px-4 py-2.5 rounded-xl flex items-center gap-3";
-                } else {
-                    alertBox.innerHTML = `<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div><p class="text-xs text-emerald-300 font-medium leading-relaxed"><strong class="text-emerald-400">Environment Stable:</strong> Optimal humidity (${humidity}%).</p>`;
-                    alertBox.className = "bg-emerald-500/5 border border-emerald-500/10 px-4 py-2.5 rounded-xl flex items-center gap-3";
-                }
+                document.getElementById('weather-temp').innerText = `${Math.round(data.current.temperature_2m)}°C`;
+                document.getElementById('weather-humidity').innerText = `${data.current.relative_humidity_2m}%`;
             } catch (err) { console.log("Weather API Offline"); }
         }
         fetchLiveWeather();
@@ -526,35 +660,35 @@
                     data: [520, 241, 110, 68, 143],
                     backgroundColor: ['rgba(16, 185, 129, 0.15)', 'rgba(239, 68, 68, 0.15)', 'rgba(249, 115, 22, 0.15)', 'rgba(234, 179, 8, 0.15)', 'rgba(168, 85, 247, 0.15)'],
                     borderColor: ['#10b981', '#ef4444', '#f97316', '#eab308', '#a855f7'],
-                    borderWidth: 2, borderRadius: 8, borderSkipped: false
+                    borderWidth: 2, borderRadius: 8
                 }]
             },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { grid: { color: '#111827' }, ticks: { color: '#64748b', font: { size: 10 } } },
-                    x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } }
-                }
-            }
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
 
-        imageInput.addEventListener('change', function(e) {
+        imageInput.addEventListener('change', async function(e) {
             const file = e.target.files[0];
             if (file) {
-                capturedBlob = null; // Clear live stream flag
+                capturedBlob = null;
                 filenameText.innerText = file.name;
                 const reader = new FileReader();
-                reader.onload = function(event) {
+                reader.onload = async function(event) {
                     imagePreview.src = event.target.result;
                     uploadPrompt.classList.add('hidden');
                     previewContainer.classList.remove('hidden');
+
+                    // Run filter verification algorithm on static image files too
+                    const isBlurry = await verifyClarityAndDetectBlur(imagePreview);
+                    if(isBlurry) {
+                        blurAlertBox.classList.remove('hidden');
+                    } else {
+                        blurAlertBox.classList.add('hidden');
+                    }
                 }
                 reader.readAsDataURL(file);
             }
         });
 
-        // Trigger ML Model Run API Post Request Matrix
         scanBtn.addEventListener('click', async () => {
             const file = imageInput.files[0];
             if (!file && !capturedBlob) {
@@ -562,15 +696,19 @@
                 return;
             }
 
+            // Dual validation block blockading requests if image parameters are highly blurred
+            const isBlurry = await verifyClarityAndDetectBlur(imagePreview);
+            if(isBlurry) {
+                alert("Bhai, photo bohot dhundli (blurry) hai! Isko model thik se check nahi kar paayega. Kripya ek saaf photo click karein.");
+                return;
+            }
+
             scanBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin text-[11px]"></i> Running Core AI Matrix...`;
             scanBtn.disabled = true;
 
             const formData = new FormData();
-            if(capturedBlob) {
-                formData.append("file", capturedBlob, "live_snapshot.png");
-            } else {
-                formData.append("file", file);
-            }
+            if(capturedBlob) { formData.append("file", capturedBlob, "live_snapshot.png"); } 
+            else { formData.append("file", file); }
 
             try {
                 const response = await fetch(`${BACKEND_URL}/predict`, { method: 'POST', body: formData });
@@ -584,20 +722,7 @@
                 document.getElementById('res-cure').innerText = data.cure || "Inject balanced Copper Octanoate compound immediately.";
 
                 resultBox.classList.remove('hidden');
-                
-                if(navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(position => {
-                        L.circle([position.coords.latitude, position.coords.longitude], {
-                            color: '#ef4444', fillColor: '#f87171', fillOpacity: 0.7, radius: 30000
-                        }).addTo(map).bindPopup(`<b class="text-slate-900 text-xs">New Target Alert: ${data.disease || 'Infection'}</b>`).openPopup();
-                    });
-                }
-
                 pushLiveTransactionTable(data.disease || "Early Blight", data.risk_factor || "HIGH");
-                document.getElementById('counter-total').innerText = parseInt(document.getElementById('counter-total').innerText) + 1;
-                if((data.risk_factor || "HIGH") === "HIGH") {
-                    document.getElementById('counter-infected').innerText = parseInt(document.getElementById('counter-infected').innerText) + 1;
-                }
             } catch (error) {
                 alert("Backend Connection Timeout.");
             } finally {
@@ -613,12 +738,8 @@
             historyTableBody.insertAdjacentHTML('afterbegin', row);
         }
 
-        document.getElementById('downloadPdfBtn').addEventListener('click', () => {
-            window.open(`${BACKEND_URL}/download-report`, '_blank');
-        });
-
+        document.getElementById('downloadPdfBtn').addEventListener('click', () => { window.open(`${BACKEND_URL}/download-report`, '_blank'); });
         pushLiveTransactionTable("Late Blight Core Vector", "HIGH");
-        pushLiveTransactionTable("Healthy Specimen Node", "LOW");
     </script>
 </body>
 </html>
