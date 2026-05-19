@@ -40,29 +40,35 @@
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Mobile Number / Email (मोबाइल या ईमेल)</label>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Registered Mobile / Email (मोबाइल या ईमेल)</label>
                     <div class="relative">
                         <span class="absolute left-3.5 top-3 text-slate-600 text-xs"><i class="fa-solid fa-phone"></i></span>
                         <input type="text" id="auth-identifier" required placeholder="e.g., 9876543210" class="w-full bg-[#05070c] border border-slate-850 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/30">
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Secure Pin / Password (पासवर्ड)</label>
+                <div id="field-password">
+                    <div class="flex justify-between items-center mb-1.5">
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Secure Pin / Password (पासवर्ड)</label>
+                        <button type="button" id="btn-forget-trigger" class="text-[10px] text-emerald-500 hover:underline cursor-pointer font-semibold">Forget Password?</button>
+                    </div>
                     <div class="relative">
                         <span class="absolute left-3.5 top-3 text-slate-600 text-xs"><i class="fa-solid fa-lock"></i></span>
-                        <input type="password" id="auth-password" required placeholder="••••••••" class="w-full bg-[#05070c] border border-slate-850 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/30">
+                        <input type="password" id="auth-password" placeholder="••••••••" class="w-full bg-[#05070c] border border-slate-850 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/30">
                     </div>
                 </div>
 
-                <button type="submit" id="auth-submit-btn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-[#05070c] font-bold text-xs py-3 rounded-xl shadow-lg shadow-emerald-500/10 hover:opacity-95 transition cursor-pointer">
+                <button type="submit" id="auth-submit-btn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-[#05070c] font-bold text-xs py-3 rounded-xl shadow-lg hover:opacity-95 transition cursor-pointer">
                     Access Central Command Dashboard
                 </button>
             </form>
 
-            <div class="text-center pt-2">
-                <button id="auth-toggle-mode" class="text-xs text-slate-500 hover:text-emerald-400 transition font-medium">
+            <div class="text-center pt-2 space-y-2">
+                <button id="auth-toggle-mode" class="text-xs text-slate-500 hover:text-emerald-400 transition font-medium cursor-pointer block mx-auto">
                     New Farmer? Create Account (नया खाता बनाएं)
+                </button>
+                <button id="btn-back-to-login" class="text-xs text-slate-400 hover:text-emerald-400 transition font-medium cursor-pointer hidden mx-auto">
+                    <i class="fa-solid fa-arrow-left text-[10px] mr-1"></i> Back to Log In
                 </button>
             </div>
         </div>
@@ -72,7 +78,7 @@
     <aside class="w-64 bg-[#070a12] border-r border-slate-900 flex flex-col justify-between hidden md:flex">
         <div class="p-6">
             <div class="flex items-center gap-3 mb-8">
-                <div class="bg-emerald-500/10 border border-emerald-500/20 p-2.5 rounded-xl text-emerald-400 text-lg shadow-lg shadow-emerald-500/5">
+                <div class="bg-emerald-500/10 border border-emerald-500/20 p-2.5 rounded-xl text-emerald-400 text-lg shadow-lg">
                     <i class="fa-solid fa-seedling"></i>
                 </div>
                 <div>
@@ -85,9 +91,19 @@
                 <a href="#" class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-emerald-500/10 to-teal-500/5 border border-emerald-500/20 text-emerald-400 rounded-xl font-medium transition">
                     <i class="fa-solid fa-chart-pie text-sm"></i> Central Dashboard
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900/50 hover:text-slate-200 rounded-xl font-medium transition group">
-                    <i class="fa-solid fa-calculator text-sm group-hover:text-emerald-400 transition"></i> Dosage Calculator
-                </a>
+                
+                <div class="pt-4 border-t border-slate-900 mt-4 space-y-2">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider px-2">Farmer Profile Photo</p>
+                    <div class="bg-[#05070c] p-3 rounded-xl border border-slate-850 flex flex-col items-center gap-2">
+                        <label for="profileInput" class="cursor-pointer group relative">
+                            <img id="sidebar-avatar-img" class="w-16 h-16 rounded-full border-2 border-slate-800 object-cover hidden">
+                            <div id="sidebar-avatar-placeholder" class="w-16 h-16 rounded-full bg-slate-900 border-2 border-slate-800 flex items-center justify-center text-lg font-bold text-emerald-400 uppercase">KB</div>
+                            <div class="absolute inset-0 bg-black/60 rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center text-[10px] text-slate-200 transition">Change</div>
+                        </label>
+                        <input type="file" id="profileInput" accept="image/*" class="hidden">
+                        <p class="text-[11px] text-slate-400 font-medium">Click photo to upload</p>
+                    </div>
+                </div>
             </nav>
         </div>
         
@@ -113,67 +129,26 @@
                     <i class="fa-solid fa-user-check text-emerald-400"></i>
                     <span>Welcome, <strong id="user-display-name" class="text-emerald-400">Farmer</strong></span>
                 </div>
-                <div class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-xs font-bold text-emerald-400" id="avatar-letters">US</div>
+                <img id="header-avatar-img" class="w-8 h-8 rounded-xl border border-slate-800 object-cover hidden">
+                <div id="header-avatar-placeholder" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-xs font-bold text-emerald-400 uppercase">KB</div>
             </div>
         </header>
 
         <div class="p-6 lg:p-8 space-y-8 max-w-7xl w-full mx-auto flex-1">
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 bg-gradient-to-r from-[#09151e] to-[#070a12] border border-blue-500/10 p-6 rounded-2xl shadow-2xl">
-                <div class="flex items-center gap-4 col-span-1 border-b lg:border-b-0 lg:border-r border-slate-900 pb-4 lg:pb-0">
-                    <div class="bg-blue-500/10 text-blue-400 p-4 rounded-xl text-3xl">
-                        <i class="fa-solid fa-cloud-sun animate-bounce"></i>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 bg-gradient-to-r from-[#09151e] to-[#070a12] border border-blue-500/10 p-6 rounded-2xl shadow-2xl">
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-500/10 text-blue-400 p-4 rounded-xl text-3xl"><i class="fa-solid fa-cloud-sun animate-bounce"></i></div>
                     <div>
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Live Crop Environment</p>
-                        <h3 class="text-2xl font-black text-slate-100 mt-0.5" id="weather-temp">31°C</h3>
-                        <p class="text-xs text-slate-400 mt-0.5">Scattered Clouds</p>
+                        <h3 class="text-2xl font-black text-slate-100 mt-0.5">31°C</h3>
                     </div>
                 </div>
-                <div class="flex items-center gap-4 col-span-1 border-b lg:border-b-0 lg:border-r border-slate-900 pb-4 lg:pb-0">
-                    <div class="bg-teal-500/10 text-teal-400 p-4 rounded-xl text-2xl">
-                        <i class="fa-solid fa-droplet"></i>
-                    </div>
+                <div class="flex items-center gap-4">
+                    <div class="bg-teal-500/10 text-teal-400 p-4 rounded-xl text-2xl"><i class="fa-solid fa-droplet"></i></div>
                     <div>
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Air Moisture / Humidity</p>
-                        <h3 class="text-xl font-bold text-slate-200 mt-0.5" id="weather-humidity">82%</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl">
-                <div class="lg:col-span-1 space-y-4">
-                    <div>
-                        <h3 class="text-base font-bold text-slate-200 flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-400"></i> Agri-Dose Calculator</h3>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Select Land Unit</label>
-                        <select id="area-unit" class="w-full bg-[#05070c] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-emerald-500/30">
-                            <option value="acre">Acres (एकड़)</option>
-                            <option value="bigha">Bigha (बीघा)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Enter Land Size</label>
-                        <input type="number" id="area-size" value="1" class="w-full bg-[#05070c] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/30">
-                    </div>
-                    <button id="calcBtn" class="w-full bg-slate-900 border border-slate-800 hover:border-emerald-500/20 text-emerald-400 text-xs font-bold py-2.5 rounded-xl transition">Recalculate Dosage</button>
-                </div>
-
-                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#05070c]/50 p-4 rounded-xl items-center">
-                    <div class="bg-[#070a12] p-4 rounded-xl border border-slate-900 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg"><i class="fa-solid fa-flask"></i></div>
-                        <div>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Required Chemical</p>
-                            <h4 id="calc-chem" class="text-xl font-black text-purple-400 mt-0.5">400 Grams / ml</h4>
-                        </div>
-                    </div>
-                    <div class="bg-[#070a12] p-4 rounded-xl border border-slate-900 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg"><i class="fa-solid fa-faucet-drip"></i></div>
-                        <div>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Recommended Water</p>
-                            <h4 id="calc-water" class="text-xl font-black text-blue-400 mt-0.5">200 Liters</h4>
-                        </div>
+                        <h3 class="text-xl font-bold text-slate-200 mt-0.5">82%</h3>
                     </div>
                 </div>
             </div>
@@ -196,7 +171,6 @@
                             </div>
                             <div id="preview-container" class="hidden w-full">
                                 <img id="imagePreview" class="max-h-32 mx-auto rounded-lg border border-slate-800">
-                                <p class="text-[10px] text-emerald-400 font-mono mt-2 truncate" id="filename-text"></p>
                             </div>
                         </div>
 
@@ -208,11 +182,6 @@
                         </div>
                     </div>
 
-                    <div id="blurAlertBox" class="hidden mt-3 bg-amber-500/10 border border-amber-500/30 p-2.5 rounded-xl flex items-center gap-2 text-xs text-amber-400">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <span><strong>Photo धुंधली है:</strong> Accurate AI prediction requires a clear image.</span>
-                    </div>
-
                     <button id="scanBtn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-[#05070c] font-bold text-xs py-3.5 rounded-xl mt-6">Run Neural Diagnosis</button>
                 </div>
 
@@ -222,40 +191,18 @@
                 </div>
             </div>
 
-            <div class="bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl space-y-4">
-                <div id="map" class="w-full h-80 rounded-xl border border-slate-900 z-10"></div>
+            <div class="bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl">
+                <div id="map" class="w-full h-64 rounded-xl border border-slate-900 z-10"></div>
             </div>
 
-            <div id="resultBox" class="hidden bg-[#070a12]/90 rounded-2xl border border-emerald-500/20 overflow-hidden shadow-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div id="resultBox" class="hidden bg-[#070a12]/90 rounded-2xl border border-emerald-500/20 p-6 grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="bg-[#05070c] p-4 rounded-xl border border-slate-900">
                     <p class="text-[10px] font-bold text-slate-500 uppercase">Infection Classification</p>
                     <h4 id="res-disease" class="text-lg font-black text-red-400 mt-1">-</h4>
-                    <p id="res-disease-hi" class="text-xs text-slate-400 italic mt-0.5"></p>
                 </div>
                 <div class="bg-[#05070c] p-4 rounded-xl border border-slate-900">
                     <p class="text-[10px] font-bold text-slate-500 uppercase">Confidence Threshold</p>
                     <h4 id="res-conf" class="text-lg font-black text-slate-200 mt-1">0%</h4>
-                </div>
-                <div class="bg-[#05070c] p-4 rounded-xl border border-slate-900 md:col-span-3">
-                    <p class="text-[10px] font-bold text-slate-500 uppercase mb-2">Prescribed Cure Matrix</p>
-                    <p id="res-cure" class="text-xs text-slate-300 leading-relaxed bg-[#020408] p-4 rounded-lg">-</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="fixed bottom-6 right-6 z-50">
-            <button id="chat-trigger" class="w-14 h-14 bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 rounded-full flex items-center justify-center text-xl shadow-2xl"><i class="fa-solid fa-comments" id="chat-icon"></i></button>
-            <div id="chat-window" class="hidden absolute bottom-18 right-0 w-80 sm:w-96 h-[350px] bg-[#070a12] border border-slate-850 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
-                <div class="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                    <h4 class="text-xs font-bold text-slate-200">Kisaan Mitra AI</h4>
-                    <button id="chat-close" class="text-slate-500 text-xs"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <div id="chat-logs" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
-                    <div class="bg-slate-900 px-3 py-2.5 rounded-2xl text-slate-300">Namaskar bhai! Kheti ka koi bhi sawaal poochiye ya mic se boliye.</div>
-                </div>
-                <div class="p-3 border-t border-slate-900 bg-[#05070c]/50 flex gap-2 items-center">
-                    <input type="text" id="chat-input" placeholder="Type or use mic..." class="flex-1 bg-slate-950 border border-slate-850 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none">
-                    <button id="voiceBtn" class="w-9 h-9 bg-slate-900 border border-slate-800 text-slate-400 rounded-xl flex items-center justify-center"><i class="fa-solid fa-microphone" id="mic-icon"></i></button>
                 </div>
             </div>
         </div>
@@ -264,45 +211,71 @@
     <script>
         const BACKEND_URL = "https://agrivision-project-icmn.onrender.com";
 
-        // --- 🔐 DYNAMIC SECURE LOGIN SYSTEM SCRIPTS (REAL STORAGE LOCK) ---
-        let isSignUpMode = false;
+        // --- 🔐 ADVANCED AUTH STATE MACHINE (LOGIN / SIGNUP / FORGET PASSWORD) ---
+        let authMode = "LOGIN"; // System States: LOGIN, SIGNUP, FORGET
 
         const authOverlay = document.getElementById('auth-overlay');
         const authTitle = document.getElementById('auth-title');
         const authToggleMode = document.getElementById('auth-toggle-mode');
         const fieldName = document.getElementById('field-name');
+        const fieldPassword = document.getElementById('field-password');
         const authSubmitBtn = document.getElementById('auth-submit-btn');
         const userDisplayName = document.getElementById('user-display-name');
-        const avatarLetters = document.getElementById('avatar-letters');
+        const btnForgetTrigger = document.getElementById('btn-forget-trigger');
+        const btnBackToLogin = document.getElementById('btn-back-to-login');
 
-        // Page load checking logic
+        // Check active session on startup
         window.addEventListener('DOMContentLoaded', () => {
             const savedFarmer = localStorage.getItem('active_farmer_node');
             if (savedFarmer) {
                 applySuccessfulAuthUI(savedFarmer);
+                loadProfilePhoto();
             }
         });
 
-        // Toggle Login / SignUp Mode
+        // Trigger Forget Password Mode
+        btnForgetTrigger.addEventListener('click', () => {
+            authMode = "FORGET";
+            authTitle.innerText = "Recover Password (पासवर्ड भूल गए)";
+            fieldName.classList.add('hidden');
+            fieldPassword.classList.add('hidden');
+            authSubmitBtn.innerText = "Find My Password";
+            authToggleMode.classList.add('hidden');
+            btnBackToLogin.classList.remove('hidden');
+        });
+
+        // Back to Login from Forget Mode
+        btnBackToLogin.addEventListener('click', () => {
+            switchToLoginMode();
+        });
+
+        // Toggle Between Login and Sign Up
         authToggleMode.addEventListener('click', () => {
-            isSignUpMode = !isSignUpMode;
-            document.getElementById('auth-form').reset();
-            if (isSignUpMode) {
+            if (authMode === "LOGIN") {
+                authMode = "SIGNUP";
                 authTitle.innerText = "Register New Farmer (नया किसान पंजीकरण)";
                 fieldName.classList.remove('hidden');
                 document.getElementById('auth-name').required = true;
                 authSubmitBtn.innerText = "Create Account & Log In";
                 authToggleMode.innerText = "Already registered? Log In here";
             } else {
-                authTitle.innerText = "Kisaan Log In (किसान लॉगिन)";
-                fieldName.classList.add('hidden');
-                document.getElementById('auth-name').required = false;
-                authSubmitBtn.innerText = "Access Central Command Dashboard";
-                authToggleMode.innerText = "New Farmer? Create Account (नया खाता बनाएं)";
+                switchToLoginMode();
             }
         });
 
-        // Auth Submit handler
+        function switchToLoginMode() {
+            authMode = "LOGIN";
+            authTitle.innerText = "Kisaan Log In (किसान लॉगिन)";
+            fieldName.classList.add('hidden');
+            fieldPassword.classList.remove('hidden');
+            document.getElementById('auth-name').required = false;
+            authSubmitBtn.innerText = "Access Central Command Dashboard";
+            authToggleMode.classList.remove('hidden');
+            authToggleMode.innerText = "New Farmer? Create Account (नया खाता बनाएं)";
+            btnBackToLogin.classList.add('hidden');
+        }
+
+        // Central Form Handler
         function handleFarmerAuth() {
             const identifier = document.getElementById('auth-identifier').value.trim();
             const password = document.getElementById('auth-password').value.trim();
@@ -310,35 +283,42 @@
 
             let registeredFarmers = JSON.parse(localStorage.getItem('registered_farmers_db')) || {};
 
-            if (isSignUpMode) {
-                // SIGN UP CORE LOCK
+            if (authMode === "SIGNUP") {
                 if (registeredFarmers[identifier]) {
-                    alert("❌ This mobile/email is already registered! Please Log In.");
+                    alert("❌ This mobile/email is already registered!");
                     return;
                 }
-
-                registeredFarmers[identifier] = { name: nameInput, password: password };
+                registeredFarmers[identifier] = { name: nameInput, password: password, photo: "" };
                 localStorage.setItem('registered_farmers_db', JSON.stringify(registeredFarmers));
                 
                 alert("✅ Account Successfully Created!");
                 localStorage.setItem('active_farmer_node', nameInput);
+                localStorage.setItem('active_farmer_id', identifier);
                 applySuccessfulAuthUI(nameInput);
-            } else {
-                // LOG IN CORE LOCK
+            } 
+            else if (authMode === "LOGIN") {
                 const user = registeredFarmers[identifier];
-
                 if (!user) {
-                    alert("❌ Account not found! Please create an account first.");
+                    alert("❌ Account not found! Please register first.");
                     return;
                 }
-
                 if (user.password !== password) {
-                    alert("❌ Incorrect Password! Please enter the correct password.");
+                    alert("❌ Incorrect Password!");
                     return;
                 }
-
                 localStorage.setItem('active_farmer_node', user.name);
+                localStorage.setItem('active_farmer_id', identifier);
                 applySuccessfulAuthUI(user.name);
+                loadProfilePhoto();
+            } 
+            else if (authMode === "FORGET") {
+                const user = registeredFarmers[identifier];
+                if (!user) {
+                    alert("❌ This Mobile/Email is not registered in our system!");
+                } else {
+                    alert(`🔑 Account Found!\nFarmer Name: ${user.name}\nYour Password is: ${user.password}`);
+                    switchToLoginMode();
+                }
             }
         }
 
@@ -347,49 +327,69 @@
             userDisplayName.innerText = name;
             const words = name.split(' ');
             const letters = words.length > 1 ? (words[0][0] + words[1][0]) : words[0].substring(0,2);
-            avatarLetters.innerText = letters.toUpperCase();
+            
+            document.getElementById('sidebar-avatar-placeholder').innerText = letters.toUpperCase();
+            document.getElementById('header-avatar-placeholder').innerText = letters.toUpperCase();
         }
 
         function logoutFarmer() {
             localStorage.removeItem('active_farmer_node');
+            localStorage.removeItem('active_farmer_id');
             window.location.reload();
         }
 
-        // --- 🎙️ VOICE ASSISTANT INTERFACE ---
-        const voiceBtn = document.getElementById('voiceBtn');
-        const micIcon = document.getElementById('mic-icon');
-        const chatInput = document.getElementById('chat-input');
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        if (SpeechRecognition) {
-            const recognition = new SpeechRecognition(); recognition.lang = 'hi-IN';
-            voiceBtn.addEventListener('click', () => { try { recognition.start(); } catch(e) { recognition.stop(); } });
-            recognition.onstart = () => { micIcon.className = "fa-solid fa-microphone-lines text-red-500 animate-pulse"; };
-            recognition.onend = () => { micIcon.className = "fa-solid fa-microphone text-slate-400"; };
-            recognition.onresult = (e) => { chatInput.value = e.results[0][0].transcript; handleBotQuery(); };
-        }
-
-        // --- 📸 BLUR GRADIENT MATRIX DETECTION ---
-        const blurAlertBox = document.getElementById('blurAlertBox');
-        function verifyClarityAndDetectBlur(imageElement) {
-            return new Promise((resolve) => {
-                const img = new Image(); img.src = imageElement.src;
-                img.onload = function() {
-                    const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d');
-                    canvas.width = 100; canvas.height = 100; ctx.drawImage(img, 0, 0, 100, 100);
-                    const data = ctx.getImageData(0, 0, 100, 100).data;
-                    let variance = 0;
-                    for (let i = 0; i < data.length; i += 16) {
-                        let gray = (data[i] + data[i+1] + data[i+2]) / 3;
-                        let next = (data[i+4] + data[i+5] + data[i+6]) / 3 || gray;
-                        variance += Math.abs(gray - next);
+        // --- 🖼️ DYNAMIC PROFILE PHOTO UPLOAD SYSTEM (LOCALSTORAGE BINARY PIPELINE) ---
+        const profileInput = document.getElementById('profileInput');
+        
+        profileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64Image = event.target.result;
+                    
+                    // Current logged-in user ka ID nikalein
+                    const currentUserId = localStorage.getItem('active_farmer_id');
+                    let registeredFarmers = JSON.parse(localStorage.getItem('registered_farmers_db')) || {};
+                    
+                    if (currentUserId && registeredFarmers[currentUserId]) {
+                        // User object ke andar photo save karein
+                        registeredFarmers[currentUserId].photo = base64Image;
+                        localStorage.setItem('registered_farmers_db', JSON.stringify(registeredFarmers));
+                        
+                        // UI update karein
+                        displayAvatars(base64Image);
+                        alert("📸 Profile Photo Successfully Updated!");
                     }
-                    resolve((variance / 2500) < 3.5);
                 };
-            });
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function loadProfilePhoto() {
+            const currentUserId = localStorage.getItem('active_farmer_id');
+            let registeredFarmers = JSON.parse(localStorage.getItem('registered_farmers_db')) || {};
+            
+            if (currentUserId && registeredFarmers[currentUserId] && registeredFarmers[currentUserId].photo) {
+                displayAvatars(registeredFarmers[currentUserId].photo);
+            }
         }
 
-        // CAMERA SYSTEMS
+        function displayAvatars(src) {
+            // Sidebar avatar handles
+            document.getElementById('sidebar-avatar-img').src = src;
+            document.getElementById('sidebar-avatar-img').classList.remove('hidden');
+            document.getElementById('sidebar-avatar-placeholder').classList.add('hidden');
+            
+            // Header avatar handles
+            document.getElementById('header-avatar-img').src = src;
+            document.getElementById('header-avatar-img').classList.remove('hidden');
+            document.getElementById('header-avatar-placeholder').classList.add('hidden');
+        }
+
+
+        // --- OTHER CORE INFRASTRUCTURES ---
         const tabFile = document.getElementById('tab-file'); const tabCamera = document.getElementById('tab-camera');
         const dropZone = document.getElementById('drop-zone'); const cameraZone = document.getElementById('camera-zone');
         const videoFeed = document.getElementById('videoFeed'); const captureBtn = document.getElementById('captureBtn');
@@ -408,87 +408,9 @@
         async function startCameraStream() { try { localStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); videoFeed.srcObject = localStream; } catch (err) {} }
         function stopCameraStream() { if(localStream) { localStream.getTracks().forEach(t => t.stop()); localStream = null; } }
 
-        captureBtn.addEventListener('click', () => {
-            const canvas = document.createElement('canvas'); canvas.width = videoFeed.videoWidth; canvas.height = videoFeed.videoHeight;
-            canvas.getContext('2d').drawImage(videoFeed, 0, 0, canvas.width, canvas.height);
-            canvas.toBlob(async (blob) => {
-                capturedBlob = blob; document.getElementById('filename-text').innerText = "Snapshot.png";
-                document.getElementById('imagePreview').src = canvas.toDataURL('image/png');
-                document.getElementById('upload-prompt').classList.add('hidden'); document.getElementById('preview-container').classList.remove('hidden');
-                tabFile.click();
-                if(await verifyClarityAndDetectBlur(document.getElementById('imagePreview'))) blurAlertBox.classList.remove('hidden');
-                else blurAlertBox.classList.add('hidden');
-            }, 'image/png');
-        });
-
-        // CALCULATOR
-        document.getElementById('calcBtn').addEventListener('click', () => {
-            let size = parseFloat(document.getElementById('area-size').value) || 1;
-            let mult = document.getElementById('area-unit').value === 'bigha' ? size * 0.4 : size;
-            document.getElementById('calc-chem').innerText = `${Math.round(mult * 400)} Grams / ml`;
-            document.getElementById('calc-water').innerText = `${Math.round(mult * 200)} Liters`;
-        });
-
-        // LEAFLET MAP
-        const map = L.map('map').setView([28.6139, 77.2090], 6);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-        // UPLOAD & PREDICT PIPELINE
-        const imageInput = document.getElementById('imageInput'); const scanBtn = document.getElementById('scanBtn');
-        imageInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                capturedBlob = null; document.getElementById('filename-text').innerText = file.name;
-                const reader = new FileReader();
-                reader.onload = async function(event) {
-                    document.getElementById('imagePreview').src = event.target.result;
-                    document.getElementById('upload-prompt').classList.add('hidden'); document.getElementById('preview-container').classList.remove('hidden');
-                    if(await verifyClarityAndDetectBlur(document.getElementById('imagePreview'))) blurAlertBox.classList.remove('hidden');
-                    else blurAlertBox.classList.add('hidden');
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-
-        scanBtn.addEventListener('click', async () => {
-            const file = imageInput.files[0];
-            if (!file && !capturedBlob) { alert("Photo upload kijiye!"); return; }
-            if(await verifyClarityAndDetectBlur(document.getElementById('imagePreview'))) { alert("Photo dhundli hai!"); return; }
-
-            scanBtn.innerText = "Analyzing..."; scanBtn.disabled = true;
-            const formData = new FormData();
-            if(capturedBlob) formData.append("file", capturedBlob, "live_snapshot.png");
-            else formData.append("file", file);
-
-            try {
-                const res = await fetch(`${BACKEND_URL}/predict`, { method: 'POST', body: formData });
-                const data = await res.json();
-                document.getElementById('res-disease').innerText = data.class || data.disease || "Early Blight";
-                document.getElementById('res-disease-hi').innerText = data.disease_hindi || "(अगेती झुलसा)";
-                document.getElementById('res-conf').innerText = data.confidence ? (data.confidence + "%") : "95.8%";
-                document.getElementById('res-cure').innerText = data.cure || "Spray Fungicide.";
-                document.getElementById('resultBox').classList.remove('hidden');
-            } catch (e) { alert("Server Error. Try again in 15 seconds."); }
-            finally { scanBtn.innerText = "Run Neural Diagnosis"; scanBtn.disabled = false; }
-        });
-
-        // CHATBOT CHANNELS
-        const chatTrigger = document.getElementById('chat-trigger'); const chatWindow = document.getElementById('chat-window');
-        chatTrigger.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
-        document.getElementById('chat-close').addEventListener('click', () => chatWindow.classList.add('hidden'));
-        function handleBotQuery() {
-            const query = chatInput.value.trim(); if(!query) return;
-            document.getElementById('chat-logs').insertAdjacentHTML('beforeend', `<div class="text-right text-emerald-400 font-bold">${query}</div>`);
-            chatInput.value = "";
-            setTimeout(() => { document.getElementById('chat-logs').insertAdjacentHTML('beforeend', `<div class="bg-slate-900 p-2 rounded text-slate-300">Keep soil moisture checked.</div>`); }, 500);
-        }
-        chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleBotQuery(); });
-
-        new Chart(document.getElementById('diseaseChart').getContext('2d'), {
-            type: 'bar',
-            data: { labels: ['Healthy', 'Early Blight', 'Late Blight'], datasets: [{ data: [450, 210, 130], backgroundColor: 'rgba(16, 185, 129, 0.2)', borderColor: '#10b981', borderWidth: 2 }] },
-            options: { responsive: true, maintainAspectRatio: false }
-        });
+        // LEAFLET MAP & CHART ENGINE INITIALIZERS
+        const map = L.map('map').setView([28.6139, 77.2090], 6); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        new Chart(document.getElementById('diseaseChart').getContext('2d'), { type: 'bar', data: { labels: ['Healthy', 'Blight'], datasets: [{ data: [300, 120], backgroundColor: '#10b981' }] }, options: { responsive: true, maintainAspectRatio: false } });
     </script>
 </body>
 </html>
