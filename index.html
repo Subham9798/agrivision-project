@@ -88,9 +88,6 @@
                 <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900/50 hover:text-slate-200 rounded-xl font-medium transition group">
                     <i class="fa-solid fa-calculator text-sm group-hover:text-emerald-400 transition"></i> Dosage Calculator
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900/50 hover:text-slate-200 rounded-xl font-medium transition group">
-                    <i class="fa-solid fa-database text-sm group-hover:text-purple-400 transition"></i> Live MongoDB Logs
-                </a>
             </nav>
         </div>
         
@@ -114,9 +111,9 @@
             <div class="flex items-center gap-4">
                 <div class="text-xs font-bold text-slate-300 flex items-center gap-2">
                     <i class="fa-solid fa-user-check text-emerald-400"></i>
-                    <span>Swagat hai, <strong id="user-display-name" class="text-emerald-400">Kisaan Bhai</strong></span>
+                    <span>Welcome, <strong id="user-display-name" class="text-emerald-400">Farmer</strong></span>
                 </div>
-                <div class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-xs font-bold text-emerald-400" id="avatar-letters">KB</div>
+                <div class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-xs font-bold text-emerald-400" id="avatar-letters">US</div>
             </div>
         </header>
 
@@ -130,7 +127,7 @@
                     <div>
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Live Crop Environment</p>
                         <h3 class="text-2xl font-black text-slate-100 mt-0.5" id="weather-temp">31°C</h3>
-                        <p class="text-xs text-slate-400 mt-0.5">Scattered Clouds • Node Matrix</p>
+                        <p class="text-xs text-slate-400 mt-0.5">Scattered Clouds</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4 col-span-1 border-b lg:border-b-0 lg:border-r border-slate-900 pb-4 lg:pb-0">
@@ -140,65 +137,6 @@
                     <div>
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Air Moisture / Humidity</p>
                         <h3 class="text-xl font-bold text-slate-200 mt-0.5" id="weather-humidity">82%</h3>
-                        <p class="text-[11px] text-slate-500 mt-0.5">High moisture dynamic</p>
-                    </div>
-                </div>
-                <div class="col-span-1 flex flex-col justify-center">
-                    <div class="bg-red-500/5 border border-red-500/10 px-4 py-2.5 rounded-xl flex items-center gap-3" id="alert-box">
-                        <div class="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
-                        <p class="text-xs text-red-300 font-medium leading-relaxed">
-                            <strong class="text-red-400">Bio-Risk Alert:</strong> Spore growth environment active for Early Blight.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl space-y-4">
-                    <div>
-                        <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
-                            <i class="fa-solid fa-flask-vial text-teal-400"></i> N-P-K Soil Health Matrix
-                        </h3>
-                        <p class="text-xs text-slate-500">Real-time macronutrient calibration index detected.</p>
-                    </div>
-                    <div class="space-y-3.5">
-                        <div>
-                            <div class="flex justify-between text-xs mb-1">
-                                <span class="text-slate-400 font-medium">Nitrogen (N)</span>
-                                <span class="text-emerald-400 font-mono font-bold">64% (Optimal)</span>
-                            </div>
-                            <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-900">
-                                <div class="bg-emerald-500 h-full rounded-full" style="width: 64%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-xs mb-1">
-                                <span class="text-slate-400 font-medium">Phosphorus (P)</span>
-                                <span class="text-amber-400 font-mono font-bold">42% (Deficient)</span>
-                            </div>
-                            <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-900">
-                                <div class="bg-amber-500 h-full rounded-full" style="width: 42%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
-                            <i class="fa-solid fa-chart-line-up text-purple-400"></i> AI Crop Yield & Market Forecast
-                        </h3>
-                        <p class="text-xs text-slate-500 mb-4">Predictive harvest volume and gross valuation metrics.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-[#05070c] p-4 rounded-xl border border-slate-900 text-center">
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Estimated Harvest</p>
-                            <h4 class="text-xl font-black text-purple-400 mt-1" id="forecast-yield">12.4 Tons</h4>
-                        </div>
-                        <div class="bg-[#05070c] p-4 rounded-xl border border-slate-900 text-center">
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Gross Market Value</p>
-                            <h4 class="text-xl font-black text-emerald-400 mt-1" id="forecast-price">₹2,48,000</h4>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -206,10 +144,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl">
                 <div class="lg:col-span-1 space-y-4">
                     <div>
-                        <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
-                            <i class="fa-solid fa-calculator text-emerald-400"></i> Agri-Dose Calculator
-                        </h3>
-                        <p class="text-xs text-slate-500">Calculate exact pesticide & water formulation ratio.</p>
+                        <h3 class="text-base font-bold text-slate-200 flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-400"></i> Agri-Dose Calculator</h3>
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Select Land Unit</label>
@@ -219,24 +154,24 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Enter Land Size / Area</label>
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Enter Land Size</label>
                         <input type="number" id="area-size" value="1" class="w-full bg-[#05070c] border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/30">
                     </div>
                     <button id="calcBtn" class="w-full bg-slate-900 border border-slate-800 hover:border-emerald-500/20 text-emerald-400 text-xs font-bold py-2.5 rounded-xl transition">Recalculate Dosage</button>
                 </div>
 
-                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#05070c]/50 p-4 rounded-xl border border-slate-950/60 items-center">
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#05070c]/50 p-4 rounded-xl items-center">
                     <div class="bg-[#070a12] p-4 rounded-xl border border-slate-900 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg border border-purple-500/5"><i class="fa-solid fa-flask"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg"><i class="fa-solid fa-flask"></i></div>
                         <div>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Required Chemical Weight</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Required Chemical</p>
                             <h4 id="calc-chem" class="text-xl font-black text-purple-400 mt-0.5">400 Grams / ml</h4>
                         </div>
                     </div>
                     <div class="bg-[#070a12] p-4 rounded-xl border border-slate-900 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg border border-blue-500/5"><i class="fa-solid fa-faucet-drip"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg"><i class="fa-solid fa-faucet-drip"></i></div>
                         <div>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Recommended Water Volume</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Recommended Water</p>
                             <h4 id="calc-water" class="text-xl font-black text-blue-400 mt-0.5">200 Liters</h4>
                         </div>
                     </div>
@@ -244,31 +179,28 @@
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                <div class="lg:col-span-5 bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[520px]">
+                <div class="lg:col-span-5 bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[400px]">
                     <div>
-                        <h3 class="text-base font-bold text-slate-200 mb-1 flex items-center gap-2">
-                            <i class="fa-solid fa-sliders text-emerald-400 text-sm"></i> Telemetry Capture Node
-                        </h3>
-                        <p class="text-xs text-slate-500 mb-4">Stream crop imagery via static upload or live camera.</p>
+                        <h3 class="text-base font-bold text-slate-200 mb-1 flex items-center gap-2"><i class="fa-solid fa-sliders text-emerald-400 text-sm"></i> Telemetry Capture Node</h3>
                         
-                        <div class="flex bg-[#05070c] p-1 rounded-xl border border-slate-900 mb-4 text-xs font-semibold">
-                            <button id="tab-file" class="flex-1 py-2 text-center rounded-lg bg-slate-900 text-emerald-400 border border-slate-800 transition cursor-pointer">File Mode</button>
-                            <button id="tab-camera" class="flex-1 py-2 text-center rounded-lg text-slate-500 hover:text-slate-300 transition cursor-pointer">Live Lens</button>
+                        <div class="flex bg-[#05070c] p-1 rounded-xl border border-slate-900 my-4 text-xs font-semibold">
+                            <button id="tab-file" class="flex-1 py-2 text-center rounded-lg bg-slate-900 text-emerald-400 border border-slate-800 cursor-pointer">File Mode</button>
+                            <button id="tab-camera" class="flex-1 py-2 text-center rounded-lg text-slate-500 hover:text-slate-300 cursor-pointer">Live Lens</button>
                         </div>
 
-                        <div class="border-2 border-dashed border-slate-800 hover:border-emerald-500/30 bg-[#090d16]/50 rounded-xl p-8 text-center cursor-pointer transition relative h-56 flex flex-col justify-center items-center" id="drop-zone">
+                        <div class="border-2 border-dashed border-slate-800 hover:border-emerald-500/30 bg-[#090d16]/50 rounded-xl p-8 text-center cursor-pointer transition relative h-44 flex flex-col justify-center items-center" id="drop-zone">
                             <input type="file" id="imageInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
                             <div id="upload-prompt" class="space-y-3">
                                 <div class="w-12 h-12 rounded-xl bg-slate-900 text-slate-400 flex items-center justify-center text-base mx-auto border border-slate-800"><i class="fa-solid fa-add"></i></div>
                                 <p class="text-xs font-semibold text-slate-300">Upload plant specimen image</p>
                             </div>
                             <div id="preview-container" class="hidden w-full">
-                                <img id="imagePreview" class="max-h-40 mx-auto rounded-lg border border-slate-800">
+                                <img id="imagePreview" class="max-h-32 mx-auto rounded-lg border border-slate-800">
                                 <p class="text-[10px] text-emerald-400 font-mono mt-2 truncate" id="filename-text"></p>
                             </div>
                         </div>
 
-                        <div id="camera-zone" class="hidden relative h-56 bg-black rounded-xl border border-slate-900 overflow-hidden">
+                        <div id="camera-zone" class="hidden relative h-44 bg-black rounded-xl border border-slate-900 overflow-hidden">
                             <video id="videoFeed" autoplay playsinline class="w-full h-full object-cover"></video>
                             <div class="absolute bottom-3 left-0 right-0 flex justify-center z-20">
                                 <button id="captureBtn" class="bg-red-500 text-white text-[10px] uppercase font-bold px-3 py-1.5 rounded-lg">Snapshot</button>
@@ -284,14 +216,14 @@
                     <button id="scanBtn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-[#05070c] font-bold text-xs py-3.5 rounded-xl mt-6">Run Neural Diagnosis</button>
                 </div>
 
-                <div class="lg:col-span-7 bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[520px]">
+                <div class="lg:col-span-7 bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl flex flex-col justify-between min-h-[400px]">
                     <h3 class="text-base font-bold text-slate-200 mb-1 flex items-center gap-2"><i class="fa-solid fa-chart-line text-blue-400 text-sm"></i> Epidemic Distribution Index</h3>
-                    <div class="flex-1 flex items-center justify-center h-full"><canvas id="diseaseChart" class="w-full max-h-[320px]"></canvas></div>
+                    <div class="flex-1 flex items-center justify-center h-full"><canvas id="diseaseChart" class="w-full max-h-[250px]"></canvas></div>
                 </div>
             </div>
 
             <div class="bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl space-y-4">
-                <div id="map" class="w-full h-96 rounded-xl border border-slate-900 z-10"></div>
+                <div id="map" class="w-full h-80 rounded-xl border border-slate-900 z-10"></div>
             </div>
 
             <div id="resultBox" class="hidden bg-[#070a12]/90 rounded-2xl border border-emerald-500/20 overflow-hidden shadow-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -313,7 +245,7 @@
 
         <div class="fixed bottom-6 right-6 z-50">
             <button id="chat-trigger" class="w-14 h-14 bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 rounded-full flex items-center justify-center text-xl shadow-2xl"><i class="fa-solid fa-comments" id="chat-icon"></i></button>
-            <div id="chat-window" class="hidden absolute bottom-18 right-0 w-80 sm:w-96 h-[400px] bg-[#070a12] border border-slate-850 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            <div id="chat-window" class="hidden absolute bottom-18 right-0 w-80 sm:w-96 h-[350px] bg-[#070a12] border border-slate-850 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
                 <div class="bg-slate-900 px-4 py-3 flex items-center justify-between">
                     <h4 class="text-xs font-bold text-slate-200">Kisaan Mitra AI</h4>
                     <button id="chat-close" class="text-slate-500 text-xs"><i class="fa-solid fa-xmark"></i></button>
@@ -332,7 +264,7 @@
     <script>
         const BACKEND_URL = "https://agrivision-project-icmn.onrender.com";
 
-        // --- 🔐 DYNAMIC SECURE LOGIN SYSTEM SCRIPTS ---
+        // --- 🔐 DYNAMIC SECURE LOGIN SYSTEM SCRIPTS (REAL STORAGE LOCK) ---
         let isSignUpMode = false;
 
         const authOverlay = document.getElementById('auth-overlay');
@@ -343,7 +275,7 @@
         const userDisplayName = document.getElementById('user-display-name');
         const avatarLetters = document.getElementById('avatar-letters');
 
-        // Check if user session already exists in localStorage parameters
+        // Page load checking logic
         window.addEventListener('DOMContentLoaded', () => {
             const savedFarmer = localStorage.getItem('active_farmer_node');
             if (savedFarmer) {
@@ -351,38 +283,68 @@
             }
         });
 
+        // Toggle Login / SignUp Mode
         authToggleMode.addEventListener('click', () => {
             isSignUpMode = !isSignUpMode;
+            document.getElementById('auth-form').reset();
             if (isSignUpMode) {
                 authTitle.innerText = "Register New Farmer (नया किसान पंजीकरण)";
                 fieldName.classList.remove('hidden');
+                document.getElementById('auth-name').required = true;
                 authSubmitBtn.innerText = "Create Account & Log In";
                 authToggleMode.innerText = "Already registered? Log In here";
             } else {
                 authTitle.innerText = "Kisaan Log In (किसान लॉगिन)";
                 fieldName.classList.add('hidden');
+                document.getElementById('auth-name').required = false;
                 authSubmitBtn.innerText = "Access Central Command Dashboard";
                 authToggleMode.innerText = "New Farmer? Create Account (नया खाता बनाएं)";
             }
         });
 
+        // Auth Submit handler
         function handleFarmerAuth() {
             const identifier = document.getElementById('auth-identifier').value.trim();
+            const password = document.getElementById('auth-password').value.trim();
             const nameInput = document.getElementById('auth-name').value.trim();
-            
-            // Standardizing local encryption mock pipeline
-            let finalFarmerName = isSignUpMode ? nameInput : "Kisaan Mitra";
-            if(!isSignUpMode && identifier.includes('9798')) finalFarmerName = "Subham Kumar"; // Personalized trigger
 
-            localStorage.setItem('active_farmer_node', finalFarmerName);
-            applySuccessfulAuthUI(finalFarmerName);
+            let registeredFarmers = JSON.parse(localStorage.getItem('registered_farmers_db')) || {};
+
+            if (isSignUpMode) {
+                // SIGN UP CORE LOCK
+                if (registeredFarmers[identifier]) {
+                    alert("❌ This mobile/email is already registered! Please Log In.");
+                    return;
+                }
+
+                registeredFarmers[identifier] = { name: nameInput, password: password };
+                localStorage.setItem('registered_farmers_db', JSON.stringify(registeredFarmers));
+                
+                alert("✅ Account Successfully Created!");
+                localStorage.setItem('active_farmer_node', nameInput);
+                applySuccessfulAuthUI(nameInput);
+            } else {
+                // LOG IN CORE LOCK
+                const user = registeredFarmers[identifier];
+
+                if (!user) {
+                    alert("❌ Account not found! Please create an account first.");
+                    return;
+                }
+
+                if (user.password !== password) {
+                    alert("❌ Incorrect Password! Please enter the correct password.");
+                    return;
+                }
+
+                localStorage.setItem('active_farmer_node', user.name);
+                applySuccessfulAuthUI(user.name);
+            }
         }
 
         function applySuccessfulAuthUI(name) {
             authOverlay.classList.add('hidden');
             userDisplayName.innerText = name;
-            
-            // Generate avatar characters dynamically
             const words = name.split(' ');
             const letters = words.length > 1 ? (words[0][0] + words[1][0]) : words[0].substring(0,2);
             avatarLetters.innerText = letters.toUpperCase();
@@ -390,7 +352,7 @@
 
         function logoutFarmer() {
             localStorage.removeItem('active_farmer_node');
-            window.location.reload(); // Hard resets state framework structure back to auth blockade lock
+            window.location.reload();
         }
 
         // --- 🎙️ VOICE ASSISTANT INTERFACE ---
@@ -400,8 +362,7 @@
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
         if (SpeechRecognition) {
-            const recognition = new SpeechRecognition();
-            recognition.lang = 'hi-IN';
+            const recognition = new SpeechRecognition(); recognition.lang = 'hi-IN';
             voiceBtn.addEventListener('click', () => { try { recognition.start(); } catch(e) { recognition.stop(); } });
             recognition.onstart = () => { micIcon.className = "fa-solid fa-microphone-lines text-red-500 animate-pulse"; };
             recognition.onend = () => { micIcon.className = "fa-solid fa-microphone text-slate-400"; };
@@ -428,7 +389,7 @@
             });
         }
 
-        // CAMERA INTERFACE SETUP MODULE
+        // CAMERA SYSTEMS
         const tabFile = document.getElementById('tab-file'); const tabCamera = document.getElementById('tab-camera');
         const dropZone = document.getElementById('drop-zone'); const cameraZone = document.getElementById('camera-zone');
         const videoFeed = document.getElementById('videoFeed'); const captureBtn = document.getElementById('captureBtn');
@@ -444,7 +405,6 @@
             tabFile.className = "flex-1 py-2 text-center rounded-lg text-slate-500 hover:text-slate-300 cursor-pointer";
             cameraZone.classList.remove('hidden'); dropZone.classList.add('hidden'); await startCameraStream();
         });
-
         async function startCameraStream() { try { localStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }); videoFeed.srcObject = localStream; } catch (err) {} }
         function stopCameraStream() { if(localStream) { localStream.getTracks().forEach(t => t.stop()); localStream = null; } }
 
@@ -452,7 +412,7 @@
             const canvas = document.createElement('canvas'); canvas.width = videoFeed.videoWidth; canvas.height = videoFeed.videoHeight;
             canvas.getContext('2d').drawImage(videoFeed, 0, 0, canvas.width, canvas.height);
             canvas.toBlob(async (blob) => {
-                capturedBlob = blob; document.getElementById('filename-text').innerText = "Snapshot_Matrix.png";
+                capturedBlob = blob; document.getElementById('filename-text').innerText = "Snapshot.png";
                 document.getElementById('imagePreview').src = canvas.toDataURL('image/png');
                 document.getElementById('upload-prompt').classList.add('hidden'); document.getElementById('preview-container').classList.remove('hidden');
                 tabFile.click();
@@ -461,26 +421,20 @@
             }, 'image/png');
         });
 
-        // CALCULATOR MATRIX
-        const areaUnit = document.getElementById('area-unit'); const areaSize = document.getElementById('area-size');
-        const calcBtn = document.getElementById('calcBtn');
-        calcBtn.addEventListener('click', () => {
-            let size = parseFloat(areaSize.value) || 1;
-            let mult = areaUnit.value === 'bigha' ? size * 0.4 : size;
+        // CALCULATOR
+        document.getElementById('calcBtn').addEventListener('click', () => {
+            let size = parseFloat(document.getElementById('area-size').value) || 1;
+            let mult = document.getElementById('area-unit').value === 'bigha' ? size * 0.4 : size;
             document.getElementById('calc-chem').innerText = `${Math.round(mult * 400)} Grams / ml`;
             document.getElementById('calc-water').innerText = `${Math.round(mult * 200)} Liters`;
-            document.getElementById('forecast-yield').innerText = `${(mult * 12.4).toFixed(1)} Tons`;
-            document.getElementById('forecast-price').innerText = `₹${Math.round(mult * 248000).toLocaleString('en-IN')}`;
         });
 
-        // LEAFLET NAKSHA
+        // LEAFLET MAP
         const map = L.map('map').setView([28.6139, 77.2090], 6);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        // DIAGNOSIS SCAN TARGET NETWORKS FETCH
+        // UPLOAD & PREDICT PIPELINE
         const imageInput = document.getElementById('imageInput'); const scanBtn = document.getElementById('scanBtn');
-        const resultBox = document.getElementById('resultBox');
-
         imageInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -498,12 +452,10 @@
 
         scanBtn.addEventListener('click', async () => {
             const file = imageInput.files[0];
-            if (!file && !capturedBlob) { alert("Photo upload kijiye ya Snapshot kheechiye!"); return; }
-            if(await verifyClarityAndDetectBlur(document.getElementById('imagePreview'))) { alert("Photo dhundli hai! Saaf photo upload karein."); return; }
+            if (!file && !capturedBlob) { alert("Photo upload kijiye!"); return; }
+            if(await verifyClarityAndDetectBlur(document.getElementById('imagePreview'))) { alert("Photo dhundli hai!"); return; }
 
-            scanBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> Analyzing...`;
-            scanBtn.disabled = true;
-
+            scanBtn.innerText = "Analyzing..."; scanBtn.disabled = true;
             const formData = new FormData();
             if(capturedBlob) formData.append("file", capturedBlob, "live_snapshot.png");
             else formData.append("file", file);
@@ -514,9 +466,9 @@
                 document.getElementById('res-disease').innerText = data.class || data.disease || "Early Blight";
                 document.getElementById('res-disease-hi').innerText = data.disease_hindi || "(अगेती झुलसा)";
                 document.getElementById('res-conf').innerText = data.confidence ? (data.confidence + "%") : "95.8%";
-                document.getElementById('res-cure').innerText = data.cure || "Spray Chlorothalonil fungicide safely.";
-                resultBox.classList.remove('hidden');
-            } catch (e) { alert("Server active ho raha hai. 15 seconds mein dobara dabayein!"); }
+                document.getElementById('res-cure').innerText = data.cure || "Spray Fungicide.";
+                document.getElementById('resultBox').classList.remove('hidden');
+            } catch (e) { alert("Server Error. Try again in 15 seconds."); }
             finally { scanBtn.innerText = "Run Neural Diagnosis"; scanBtn.disabled = false; }
         });
 
@@ -524,24 +476,17 @@
         const chatTrigger = document.getElementById('chat-trigger'); const chatWindow = document.getElementById('chat-window');
         chatTrigger.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
         document.getElementById('chat-close').addEventListener('click', () => chatWindow.classList.add('hidden'));
-
         function handleBotQuery() {
             const query = chatInput.value.trim(); if(!query) return;
             document.getElementById('chat-logs').insertAdjacentHTML('beforeend', `<div class="text-right text-emerald-400 font-bold">${query}</div>`);
             chatInput.value = "";
-            setTimeout(() => {
-                document.getElementById('chat-logs').insertAdjacentHTML('beforeend', `<div class="bg-slate-900 p-2 rounded text-slate-300">Bhai, mitti ka moisture banae rakhein aur subah dawa chidkein.</div>`);
-            }, 600);
+            setTimeout(() => { document.getElementById('chat-logs').insertAdjacentHTML('beforeend', `<div class="bg-slate-900 p-2 rounded text-slate-300">Keep soil moisture checked.</div>`); }, 500);
         }
         chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleBotQuery(); });
 
-        // CHART CONFIGURATION
         new Chart(document.getElementById('diseaseChart').getContext('2d'), {
             type: 'bar',
-            data: {
-                labels: ['Healthy', 'Early Blight', 'Late Blight', 'Leaf Curl'],
-                datasets: [{ data: [450, 210, 130, 95], backgroundColor: 'rgba(16, 185, 129, 0.2)', borderColor: '#10b981', borderWidth: 2 }]
-            },
+            data: { labels: ['Healthy', 'Early Blight', 'Late Blight'], datasets: [{ data: [450, 210, 130], backgroundColor: 'rgba(16, 185, 129, 0.2)', borderColor: '#10b981', borderWidth: 2 }] },
             options: { responsive: true, maintainAspectRatio: false }
         });
     </script>
