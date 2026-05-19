@@ -46,7 +46,7 @@
                     <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Registered Mobile (10-Digit Mobile)</label>
                     <div class="relative">
                         <span class="absolute left-3.5 top-3 text-slate-600 text-xs"><i class="fa-solid fa-phone"></i></span>
-                        <input type="text" id="auth-identifier" required placeholder="e.g., 9876543210" class="w-full bg-[#05070c] border border-slate-850 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-220 focus:outline-none focus:border-emerald-500/30">
+                        <input type="text" id="auth-identifier" required placeholder="e.g., 9876543210" class="w-full bg-[#05070c] border border-slate-850 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/30">
                     </div>
                 </div>
 
@@ -78,14 +78,29 @@
     </div>
 
     <aside class="w-64 bg-[#070a12] border-r border-slate-900 flex flex-col justify-between hidden md:flex shrink-0">
-        <div class="p-6">
-            <div class="flex items-center gap-3 mb-8">
+        <div class="p-6 space-y-7">
+            <div class="flex items-center gap-3">
                 <div class="bg-emerald-500/10 border border-emerald-500/20 p-2.5 rounded-xl text-emerald-400 text-lg shadow-lg">
                     <i class="fa-solid fa-seedling"></i>
                 </div>
                 <div>
                     <h1 class="text-base font-bold text-slate-100 tracking-tight">AgriVision Pro</h1>
                     <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Enterprise AI</p>
+                </div>
+            </div>
+
+            <div class="bg-[#05070c]/60 border border-slate-850 p-4 rounded-xl text-center space-y-3 relative group">
+                <div class="w-16 h-16 mx-auto rounded-full border-2 border-slate-800 group-hover:border-emerald-500/40 relative overflow-hidden bg-slate-900 flex items-center justify-center transition">
+                    <img id="profile-avatar" src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=150&q=80" class="w-full h-full object-cover hidden">
+                    <i id="avatar-placeholder" class="fa-solid fa-user-astronaut text-slate-600 text-xl"></i>
+                    <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[10px] text-emerald-400 cursor-pointer transition font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-camera mr-1"></i> Edit
+                        <input type="file" id="profileInput" accept="image/*" class="hidden">
+                    </label>
+                </div>
+                <div>
+                    <h4 id="sidebar-farmer-name" class="text-xs font-black text-slate-200">Kisaan Node</h4>
+                    <p id="sidebar-farmer-id" class="text-[9px] font-mono text-slate-500 mt-0.5">ID: Not Sync</p>
                 </div>
             </div>
             
@@ -109,13 +124,16 @@
     <main class="flex-1 flex flex-col overflow-y-auto relative">
         <header class="h-16 border-b border-slate-900 flex items-center justify-between px-8 bg-[#070a12]/40 backdrop-blur shrink-0">
             <div class="flex items-center gap-2">
-                <span class="text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 px-2.5 py-1 rounded-md">V7.2 Live SMS Broadcast System</span>
+                <span class="text-xs font-semibold bg-slate-900 text-slate-400 border border-slate-800 px-2.5 py-1 rounded-md">V7.5 Full Suite Telemetry Ready</span>
             </div>
             <div class="flex items-center gap-4">
-                <div class="text-xs font-bold text-slate-300 flex items-center gap-2">
+                <div class="text-xs font-bold text-slate-300 flex items-center gap-3">
                     <i class="fa-solid fa-user-check text-emerald-400"></i>
                     <span>Welcome, <strong id="user-display-name" class="text-emerald-400">Farmer</strong></span>
                 </div>
+                <button onclick="logoutFarmer()" class="md:hidden text-xs bg-red-950/20 border border-red-500/30 text-red-400 px-2.5 py-1 rounded-md font-bold cursor-pointer">
+                    <i class="fa-solid fa-power-off"></i>
+                </button>
             </div>
         </header>
 
@@ -152,7 +170,7 @@
                             <h3 id="risk-desc" class="text-xs font-bold text-slate-200 mt-1"></h3>
                         </div>
                     </div>
-                    <span id="sms-badge-notif" class="absolute top-2 right-2 text-[8px] bg-blue-500/20 text-blue-400 border border-blue-500/40 px-2 py-0.5 rounded font-bold hidden"><i class="fa-solid fa-paper-plane mr-1 animate-pulse"></i> ALERT SENT SMS</span>
+                    <span id="sms-badge-notif" class="absolute top-2 right-2 text-[8px] bg-blue-500/20 text-blue-400 border border-blue-500/40 px-2 py-0.5 rounded font-bold hidden"><i class="fa-solid fa-paper-plane mr-1 animate-pulse"></i> SMS BROADCASTED</span>
                 </div>
             </div>
             
@@ -179,7 +197,7 @@
                 <div class="lg:col-span-7 bg-[#070a12]/60 border border-slate-900 p-6 rounded-2xl shadow-xl flex flex-col min-h-[380px]">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-base font-bold text-slate-200 flex items-center gap-2"><i class="fa-solid fa-square-poll-horizontal text-emerald-400"></i> AI Processing Results</h3>
-                        <button id="resendSmsBtn" onclick="sendCustomFarmerSMS('Manual Trigger: System Sync Active')" class="hidden text-[10px] bg-slate-900 border border-slate-800 text-blue-400 hover:border-blue-500/30 px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 cursor-pointer">
+                        <button id="resendSmsBtn" onclick="sendCustomFarmerSMS('Manual System Overhaul Re-Sync')" class="hidden text-[10px] bg-slate-900 border border-slate-800 text-blue-400 hover:border-blue-500/30 px-2.5 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 cursor-pointer">
                             <i class="fa-solid fa-message"></i> Resend SMS Alert
                         </button>
                     </div>
@@ -214,7 +232,7 @@
     <script>
         const BACKEND_URL = "https://agrivision-project-icmn.onrender.com";
 
-        // --- AUTH LOGIC ---
+        // --- AUTH & PROFILE SYNCHRONIZER ---
         let authMode = "LOGIN"; 
         const authOverlay = document.getElementById('auth-overlay'); const authTitle = document.getElementById('auth-title');
         const authToggleMode = document.getElementById('auth-toggle-mode'); const fieldName = document.getElementById('field-name');
@@ -225,8 +243,31 @@
         window.addEventListener('DOMContentLoaded', () => {
             const savedFarmer = localStorage.getItem('active_farmer_node');
             if (savedFarmer) { saveSession(savedFarmer, localStorage.getItem('active_farmer_id')); }
+            
+            // Saved avatar processing recovery
+            const savedAvatar = localStorage.getItem('farmer_profile_avatar');
+            if (savedAvatar) { applyAvatarToDOM(savedAvatar); }
             updateMeteoRiskMatrix();
         });
+
+        // 📷 Dynamic Profile Photo Reader Pipeline
+        document.getElementById('profileInput').addEventListener('change', function(e) {
+            if (e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64Img = event.target.result;
+                    localStorage.setItem('farmer_profile_avatar', base64Img);
+                    applyAvatarToDOM(base64Img);
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        function applyAvatarToDOM(srcData) {
+            const imgEl = document.getElementById('profile-avatar');
+            const iconEl = document.getElementById('avatar-placeholder');
+            imgEl.src = srcData; imgEl.classList.remove('hidden'); iconEl.classList.add('hidden');
+        }
 
         btnForgetTrigger.addEventListener('click', () => {
             authMode = "FORGET"; authTitle.innerText = "Recover Password (पासवर्ड भूल गए)";
@@ -272,18 +313,18 @@
         }
         function saveSession(name, id) {
             localStorage.setItem('active_farmer_node', name); localStorage.setItem('active_farmer_id', id);
-            authOverlay.classList.add('hidden'); userDisplayName.innerText = name;
+            authOverlay.classList.add('hidden'); 
+            userDisplayName.innerText = name;
+            document.getElementById('sidebar-farmer-name').innerText = name;
+            document.getElementById('sidebar-farmer-id').innerText = `ID: ${id}`;
         }
         function logoutFarmer() { localStorage.clear(); window.location.reload(); }
 
-        // --- 📱 MOBILE SMS TELEMETRY BROADCAST GATEWAY ---
+        // --- 📱 MOBILE SMS TELEMETRY ENGINE ---
         async function sendCustomFarmerSMS(msgText) {
             const mobileNumber = localStorage.getItem('active_farmer_id');
-            if (!mobileNumber || mobileNumber.length < 10) { console.log("SMS failed: Valid mobile number missing."); return; }
-            
+            if (!mobileNumber || mobileNumber.length < 10) { return; }
             const smsBadge = document.getElementById('sms-badge-notif');
-            
-            // Post payload pipeline to backend server route
             try {
                 const response = await fetch(`${BACKEND_URL}/send-sms`, {
                     method: 'POST',
@@ -294,26 +335,20 @@
                     smsBadge.classList.remove('hidden');
                     setTimeout(() => smsBadge.classList.add('hidden'), 5000);
                 }
-            } catch (err) {
-                console.log("SMS Broadcast network fallback activated.");
-            }
+            } catch (err) { console.log("SMS Fallback network loop active."); }
         }
 
         // --- ⚠️ FEATURE 1: WEATHER RISK MATRIX ENGINE ---
-        const tempSlider = document.getElementById('temp-slider');
-        const humiditySlider = document.getElementById('humidity-slider');
+        const tempSlider = document.getElementById('temp-slider'); const humiditySlider = document.getElementById('humidity-slider');
         let highRiskTriggered = false;
         
         tempSlider.addEventListener('input', (e) => { document.getElementById('current-temp').innerText = `${e.target.value}°C`; updateMeteoRiskMatrix(); });
         humiditySlider.addEventListener('input', (e) => { document.getElementById('current-humidity').innerText = `${e.target.value}%`; updateMeteoRiskMatrix(); });
 
         function updateMeteoRiskMatrix() {
-            const temp = parseInt(tempSlider.value);
-            const humidity = parseInt(humiditySlider.value);
-            const riskCard = document.getElementById('risk-matrix-card');
-            const iconBox = document.getElementById('risk-icon-box');
-            const badge = document.getElementById('risk-badge');
-            const desc = document.getElementById('risk-desc');
+            const temp = parseInt(tempSlider.value); const humidity = parseInt(humiditySlider.value);
+            const riskCard = document.getElementById('risk-matrix-card'); const iconBox = document.getElementById('risk-icon-box');
+            const badge = document.getElementById('risk-badge'); const desc = document.getElementById('risk-desc');
 
             if (humidity > 80 && temp > 28) {
                 riskCard.className = "bg-red-950/20 border-red-500/40 border p-5 rounded-2xl shadow-xl flex items-center gap-4 animate-pulse";
@@ -323,13 +358,12 @@
                 badge.innerText = "⚠️ METEO RISK: HIGH";
                 desc.innerText = "High humidity detected! Fungus growth conditions met.";
                 
-                // Automatic SMS Trigger to farmer mobile on critical weather events
                 if (!highRiskTriggered) {
                     sendCustomFarmerSMS(`AgriVision Alert! Aapke khet me High Humidity (${humidity}%) aur Temp (${temp}°C) ke karan bimari ka khatra badh gaya hai. Kripya check karein!`);
                     highRiskTriggered = true;
                 }
             } else {
-                highRiskTriggered = false; // Reset trigger when conditions cool down
+                highRiskTriggered = false;
                 riskCard.className = "bg-emerald-950/20 border-emerald-500/30 border p-5 rounded-2xl shadow-xl flex items-center gap-4";
                 iconBox.className = "bg-emerald-500/10 text-emerald-400 p-4 rounded-xl text-2xl";
                 iconBox.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
@@ -342,10 +376,8 @@
         // --- 📄 FEATURE 4: AUTOMATED PDF ENGINE ---
         function generateDynamicPDFReport() {
             const element = document.getElementById('dashboard-pdf-target');
-            const pdfBtn = document.getElementById('pdfBtn');
             html2pdf().set({
-                margin: 0.3,
-                filename: 'AgriVision_Report.pdf',
+                margin: 0.3, filename: 'AgriVision_Report.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, backgroundColor: '#0b0f19' },
                 jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -379,15 +411,14 @@
 
                 document.getElementById('res-disease').innerText = disease;
                 document.getElementById('res-disease-hi').innerText = diseaseHi;
-                document.getElementById('res-conf').innerText = data.confidence ? `${parseFloat(data.confidence).toFixed(1)}%` : "94.2%";
+                document.getElementById('res-conf').innerText = data.confidence ? `${parseFloat(data.confidence).toFixed(1)}%` : "94.2";
                 document.getElementById('res-cure').innerText = cureText;
                 
                 resultPlaceholder.classList.add('hidden'); resultBox.classList.remove('hidden');
                 document.getElementById('resendSmsBtn').classList.remove('hidden');
 
-                // Instant Diagnosis SMS update straight to farmer's mobile phone
                 sendCustomFarmerSMS(`AgriVision Report: Aapki fasal me ${disease} ${diseaseHi} paaya gaya hai. Upchar: ${cureText}`);
-            } catch (e) { alert("Server active error. Please check backend link connection."); } 
+            } catch (e) { alert("Server connection active error."); } 
             finally { scanBtn.innerText = "Run Neural Diagnosis & Broadcast SMS"; scanBtn.disabled = false; }
         });
     </script>
